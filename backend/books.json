@@ -1,0 +1,1152 @@
+[
+  {
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "description": "Atomic Habits by James Clear.",
+    "coverImage": "/books/atomic-habits.webp",
+    "categories": [
+      "Self-Help"
+    ],
+    "price": 299,
+    "pages": 220,
+    "publisher": "Various Publishers",
+    "publishedYear": 2018,
+    "language": "English",
+    "rating": {
+      "average": 4.3,
+      "count": 5000
+    },
+    "tags": [
+      "self-help",
+      "bestseller"
+    ],
+    "isRecommended": true
+  },
+  {
+    "title": "The Alchemist",
+    "author": "Paulo Coelho",
+    "description": "The Alchemist by Paulo Coelho.",
+    "coverImage": "/books/the-alchemist.webp",
+    "categories": [
+      "Fiction"
+    ],
+    "price": 399,
+    "pages": 233,
+    "publisher": "Various Publishers",
+    "publishedYear": 1988,
+    "language": "English",
+    "rating": {
+      "average": 4.4,
+      "count": 5731
+    },
+    "tags": [
+      "fiction",
+      "bestseller"
+    ],
+    "isRecommended": true
+  },
+  {
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "description": "Clean Code by Robert C. Martin.",
+    "coverImage": "/books/clean-code.webp",
+    "categories": [
+      "Technology"
+    ],
+    "price": 499,
+    "pages": 246,
+    "publisher": "Various Publishers",
+    "publishedYear": 2008,
+    "language": "English",
+    "rating": {
+      "average": 4.5,
+      "count": 6462
+    },
+    "tags": [
+      "technology",
+      "bestseller"
+    ],
+    "isRecommended": true
+  },
+  {
+    "title": "Deep Work",
+    "author": "Cal Newport",
+    "description": "Deep Work by Cal Newport.",
+    "coverImage": "/books/deep-work.webp",
+    "categories": [
+      "Business"
+    ],
+    "price": 599,
+    "pages": 259,
+    "publisher": "Various Publishers",
+    "publishedYear": 2016,
+    "language": "English",
+    "rating": {
+      "average": 4.6,
+      "count": 7193
+    },
+    "tags": [
+      "business",
+      "bestseller"
+    ],
+    "isRecommended": true
+  },
+  {
+    "title": "The Pragmatic Programmer",
+    "author": "Andrew Hunt & David Thomas",
+    "description": "The Pragmatic Programmer by Andrew Hunt & David Thomas.",
+    "coverImage": "/books/the-pragmatic-programmer.jpeg",
+    "categories": [
+      "Technology"
+    ],
+    "price": 699,
+    "pages": 272,
+    "publisher": "Various Publishers",
+    "publishedYear": 1999,
+    "language": "English",
+    "rating": {
+      "average": 4.7,
+      "count": 7924
+    },
+    "tags": [
+      "technology",
+      "bestseller"
+    ],
+    "isRecommended": true
+  },
+  {
+    "title": "Rich Dad Poor Dad",
+    "author": "Robert T. Kiyosaki",
+    "description": "Rich Dad Poor Dad by Robert T. Kiyosaki.",
+    "coverImage": "/books/Rich-Dad-Poor-Dad.jpeg",
+    "categories": [
+      "Business"
+    ],
+    "price": 799,
+    "pages": 285,
+    "publisher": "Various Publishers",
+    "publishedYear": 1997,
+    "language": "English",
+    "rating": {
+      "average": 4.8,
+      "count": 8655
+    },
+    "tags": [
+      "business",
+      "bestseller"
+    ],
+    "isRecommended": true
+  },
+  {
+    "title": "The Psychology of Money",
+    "author": "Morgan Housel",
+    "description": "The Psychology of Money by Morgan Housel.",
+    "coverImage": "/books/psychology-of-money.webp",
+    "categories": [
+      "Business"
+    ],
+    "price": 899,
+    "pages": 298,
+    "publisher": "Various Publishers",
+    "publishedYear": 2020,
+    "language": "English",
+    "rating": {
+      "average": 4.9,
+      "count": 9386
+    },
+    "tags": [
+      "business",
+      "bestseller"
+    ],
+    "isRecommended": true
+  },
+  {
+    "title": "Think and Grow Rich",
+    "author": "Napoleon Hill",
+    "description": "Think and Grow Rich by Napoleon Hill.",
+    "coverImage": "/books/think-and-grow-rich.webp",
+    "categories": [
+      "Business"
+    ],
+    "price": 999,
+    "pages": 311,
+    "publisher": "Various Publishers",
+    "publishedYear": 1937,
+    "language": "English",
+    "rating": {
+      "average": 4.3,
+      "count": 10117
+    },
+    "tags": [
+      "business",
+      "bestseller"
+    ],
+    "isRecommended": true
+  },
+  {
+    "title": "The 7 Habits of Highly Effective People",
+    "author": "Stephen R. Covey",
+    "description": "The 7 Habits of Highly Effective People by Stephen R. Covey.",
+    "coverImage": "/books/7-habits.webp",
+    "categories": [
+      "Self-Help"
+    ],
+    "price": 299,
+    "pages": 324,
+    "publisher": "Various Publishers",
+    "publishedYear": 1989,
+    "language": "English",
+    "rating": {
+      "average": 4.4,
+      "count": 10848
+    },
+    "tags": [
+      "self-help",
+      "bestseller"
+    ],
+    "isRecommended": true
+  },
+  {
+    "title": "How to Win Friends and Influence People",
+    "author": "Dale Carnegie",
+    "description": "How to Win Friends and Influence People by Dale Carnegie.",
+    "coverImage": "/books/how-to-win-friends.webp",
+    "categories": [
+      "Self-Help"
+    ],
+    "price": 399,
+    "pages": 337,
+    "publisher": "Various Publishers",
+    "publishedYear": 1936,
+    "language": "English",
+    "rating": {
+      "average": 4.5,
+      "count": 11579
+    },
+    "tags": [
+      "self-help",
+      "bestseller"
+    ],
+    "isRecommended": true
+  },
+  {
+    "title": "Sapiens",
+    "author": "Yuval Noah Harari",
+    "description": "Sapiens by Yuval Noah Harari.",
+    "coverImage": "/books/sapiens.webp",
+    "categories": [
+      "History"
+    ],
+    "price": 499,
+    "pages": 350,
+    "publisher": "Various Publishers",
+    "publishedYear": 2011,
+    "language": "English",
+    "rating": {
+      "average": 4.6,
+      "count": 12310
+    },
+    "tags": [
+      "history",
+      "bestseller"
+    ],
+    "isRecommended": true
+  },
+  {
+    "title": "Homo Deus",
+    "author": "Yuval Noah Harari",
+    "description": "Homo Deus by Yuval Noah Harari.",
+    "coverImage": "/books/HomoDeus.jpeg",
+    "categories": [
+      "Science"
+    ],
+    "price": 599,
+    "pages": 363,
+    "publisher": "Various Publishers",
+    "publishedYear": 2015,
+    "language": "English",
+    "rating": {
+      "average": 4.7,
+      "count": 13041
+    },
+    "tags": [
+      "science",
+      "bestseller"
+    ],
+    "isRecommended": true
+  },
+  {
+    "title": "21 Lessons for the 21st Century",
+    "author": "Yuval Noah Harari",
+    "description": "21 Lessons for the 21st Century by Yuval Noah Harari.",
+    "coverImage": "/books/21-Lessons-for-the-21st-Century.jpeg",
+    "categories": [
+      "Science"
+    ],
+    "price": 699,
+    "pages": 376,
+    "publisher": "Various Publishers",
+    "publishedYear": 2018,
+    "language": "English",
+    "rating": {
+      "average": 4.8,
+      "count": 13772
+    },
+    "tags": [
+      "science",
+      "bestseller"
+    ],
+    "isRecommended": true
+  },
+  {
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "description": "The Hobbit by J.R.R. Tolkien.",
+    "coverImage": "/books/The-Hobbit.jpeg",
+    "categories": [
+      "Fantasy"
+    ],
+    "price": 799,
+    "pages": 389,
+    "publisher": "Various Publishers",
+    "publishedYear": 1937,
+    "language": "English",
+    "rating": {
+      "average": 4.9,
+      "count": 14503
+    },
+    "tags": [
+      "fantasy",
+      "bestseller"
+    ],
+    "isRecommended": true
+  },
+  {
+    "title": "The Lord of the Rings",
+    "author": "J.R.R. Tolkien",
+    "description": "The Lord of the Rings by J.R.R. Tolkien.",
+    "coverImage": "/books/The-Lord-of-the-Rings.webp",
+    "categories": [
+      "Fantasy"
+    ],
+    "price": 899,
+    "pages": 402,
+    "publisher": "Various Publishers",
+    "publishedYear": 1954,
+    "language": "English",
+    "rating": {
+      "average": 4.3,
+      "count": 15234
+    },
+    "tags": [
+      "fantasy",
+      "bestseller"
+    ],
+    "isRecommended": true
+  },
+  {
+    "title": "Harry Potter and the Sorcerer's Stone",
+    "author": "J.K. Rowling",
+    "description": "Harry Potter and the Sorcerer's Stone by J.K. Rowling.",
+    "coverImage": "/books/hp1.webp",
+    "categories": [
+      "Fantasy"
+    ],
+    "price": 999,
+    "pages": 415,
+    "publisher": "Various Publishers",
+    "publishedYear": 1997,
+    "language": "English",
+    "rating": {
+      "average": 4.4,
+      "count": 15965
+    },
+    "tags": [
+      "fantasy",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Harry Potter and the Chamber of Secrets",
+    "author": "J.K. Rowling",
+    "description": "Harry Potter and the Chamber of Secrets by J.K. Rowling.",
+    "coverImage": "/books/hp2.webp",
+    "categories": [
+      "Fantasy"
+    ],
+    "price": 299,
+    "pages": 428,
+    "publisher": "Various Publishers",
+    "publishedYear": 1998,
+    "language": "English",
+    "rating": {
+      "average": 4.5,
+      "count": 16696
+    },
+    "tags": [
+      "fantasy",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Harry Potter and the Prisoner of Azkaban",
+    "author": "J.K. Rowling",
+    "description": "Harry Potter and the Prisoner of Azkaban by J.K. Rowling.",
+    "coverImage": "/books/hp3.webp",
+    "categories": [
+      "Fantasy"
+    ],
+    "price": 399,
+    "pages": 441,
+    "publisher": "Various Publishers",
+    "publishedYear": 1999,
+    "language": "English",
+    "rating": {
+      "average": 4.6,
+      "count": 17427
+    },
+    "tags": [
+      "fantasy",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Harry Potter and the Goblet of Fire",
+    "author": "J.K. Rowling",
+    "description": "Harry Potter and the Goblet of Fire by J.K. Rowling.",
+    "coverImage": "/books/hp4.webp",
+    "categories": [
+      "Fantasy"
+    ],
+    "price": 499,
+    "pages": 454,
+    "publisher": "Various Publishers",
+    "publishedYear": 2000,
+    "language": "English",
+    "rating": {
+      "average": 4.7,
+      "count": 18158
+    },
+    "tags": [
+      "fantasy",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Harry Potter and the Order of the Phoenix",
+    "author": "J.K. Rowling",
+    "description": "Harry Potter and the Order of the Phoenix by J.K. Rowling.",
+    "coverImage": "/books/hp5.webp",
+    "categories": [
+      "Fantasy"
+    ],
+    "price": 599,
+    "pages": 467,
+    "publisher": "Various Publishers",
+    "publishedYear": 2003,
+    "language": "English",
+    "rating": {
+      "average": 4.8,
+      "count": 18889
+    },
+    "tags": [
+      "fantasy",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Harry Potter and the Half-Blood Prince",
+    "author": "J.K. Rowling",
+    "description": "Harry Potter and the Half-Blood Prince by J.K. Rowling.",
+    "coverImage": "/books/hp6.webp",
+    "categories": [
+      "Fantasy"
+    ],
+    "price": 699,
+    "pages": 480,
+    "publisher": "Various Publishers",
+    "publishedYear": 2005,
+    "language": "English",
+    "rating": {
+      "average": 4.9,
+      "count": 19620
+    },
+    "tags": [
+      "fantasy",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Harry Potter and the Deathly Hallows",
+    "author": "J.K. Rowling",
+    "description": "Harry Potter and the Deathly Hallows by J.K. Rowling.",
+    "coverImage": "/books/hp7.webp",
+    "categories": [
+      "Fantasy"
+    ],
+    "price": 799,
+    "pages": 493,
+    "publisher": "Various Publishers",
+    "publishedYear": 2007,
+    "language": "English",
+    "rating": {
+      "average": 4.3,
+      "count": 20351
+    },
+    "tags": [
+      "fantasy",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "The Da Vinci Code",
+    "author": "Dan Brown",
+    "description": "The Da Vinci Code by Dan Brown.",
+    "coverImage": "/books/da-vinci-code.webp",
+    "categories": [
+      "Mystery"
+    ],
+    "price": 899,
+    "pages": 506,
+    "publisher": "Various Publishers",
+    "publishedYear": 2003,
+    "language": "English",
+    "rating": {
+      "average": 4.4,
+      "count": 21082
+    },
+    "tags": [
+      "mystery",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Angels & Demons",
+    "author": "Dan Brown",
+    "description": "Angels & Demons by Dan Brown.",
+    "coverImage": "/books/angels-demons.webp",
+    "categories": [
+      "Mystery"
+    ],
+    "price": 999,
+    "pages": 519,
+    "publisher": "Various Publishers",
+    "publishedYear": 2000,
+    "language": "English",
+    "rating": {
+      "average": 4.5,
+      "count": 21813
+    },
+    "tags": [
+      "mystery",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Inferno",
+    "author": "Dan Brown",
+    "description": "Inferno by Dan Brown.",
+    "coverImage": "/books/inferno.webp",
+    "categories": [
+      "Mystery"
+    ],
+    "price": 299,
+    "pages": 532,
+    "publisher": "Various Publishers",
+    "publishedYear": 2013,
+    "language": "English",
+    "rating": {
+      "average": 4.6,
+      "count": 22544
+    },
+    "tags": [
+      "mystery",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "The Girl with the Dragon Tattoo",
+    "author": "Stieg Larsson",
+    "description": "The Girl with the Dragon Tattoo by Stieg Larsson.",
+    "coverImage": "/books/dragon-tattoo.webp",
+    "categories": [
+      "Mystery"
+    ],
+    "price": 399,
+    "pages": 545,
+    "publisher": "Various Publishers",
+    "publishedYear": 2005,
+    "language": "English",
+    "rating": {
+      "average": 4.7,
+      "count": 23275
+    },
+    "tags": [
+      "mystery",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "description": "To Kill a Mockingbird by Harper Lee.",
+    "coverImage": "/books/to-kill-a-mockingbird.webp",
+    "categories": [
+      "Fiction"
+    ],
+    "price": 499,
+    "pages": 558,
+    "publisher": "Various Publishers",
+    "publishedYear": 1960,
+    "language": "English",
+    "rating": {
+      "average": 4.8,
+      "count": 24006
+    },
+    "tags": [
+      "fiction",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "description": "1984 by George Orwell.",
+    "coverImage": "/books/1984.webp",
+    "categories": [
+      "Fiction"
+    ],
+    "price": 599,
+    "pages": 571,
+    "publisher": "Various Publishers",
+    "publishedYear": 1949,
+    "language": "English",
+    "rating": {
+      "average": 4.9,
+      "count": 24737
+    },
+    "tags": [
+      "fiction",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Animal Farm",
+    "author": "George Orwell",
+    "description": "Animal Farm by George Orwell.",
+    "coverImage": "/books/animal-farm.webp",
+    "categories": [
+      "Fiction"
+    ],
+    "price": 699,
+    "pages": 584,
+    "publisher": "Various Publishers",
+    "publishedYear": 1945,
+    "language": "English",
+    "rating": {
+      "average": 4.3,
+      "count": 25468
+    },
+    "tags": [
+      "fiction",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "description": "Pride and Prejudice by Jane Austen.",
+    "coverImage": "/books/pride-prejudice.webp",
+    "categories": [
+      "Romance"
+    ],
+    "price": 799,
+    "pages": 597,
+    "publisher": "Various Publishers",
+    "publishedYear": 1813,
+    "language": "English",
+    "rating": {
+      "average": 4.4,
+      "count": 26199
+    },
+    "tags": [
+      "romance",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "description": "The Great Gatsby by F. Scott Fitzgerald.",
+    "coverImage": "/books/great-gatsby.webp",
+    "categories": [
+      "Fiction"
+    ],
+    "price": 899,
+    "pages": 610,
+    "publisher": "Various Publishers",
+    "publishedYear": 1925,
+    "language": "English",
+    "rating": {
+      "average": 4.5,
+      "count": 26930
+    },
+    "tags": [
+      "fiction",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "description": "The Catcher in the Rye by J.D. Salinger.",
+    "coverImage": "/books/catcher-rye.webp",
+    "categories": [
+      "Fiction"
+    ],
+    "price": 999,
+    "pages": 623,
+    "publisher": "Various Publishers",
+    "publishedYear": 1951,
+    "language": "English",
+    "rating": {
+      "average": 4.6,
+      "count": 27661
+    },
+    "tags": [
+      "fiction",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "The Kite Runner",
+    "author": "Khaled Hosseini",
+    "description": "The Kite Runner by Khaled Hosseini.",
+    "coverImage": "/books/kite-runner.webp",
+    "categories": [
+      "Drama"
+    ],
+    "price": 299,
+    "pages": 636,
+    "publisher": "Various Publishers",
+    "publishedYear": 2003,
+    "language": "English",
+    "rating": {
+      "average": 4.7,
+      "count": 28392
+    },
+    "tags": [
+      "drama",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "A Thousand Splendid Suns",
+    "author": "Khaled Hosseini",
+    "description": "A Thousand Splendid Suns by Khaled Hosseini.",
+    "coverImage": "/books/thousand-suns.webp",
+    "categories": [
+      "Drama"
+    ],
+    "price": 399,
+    "pages": 649,
+    "publisher": "Various Publishers",
+    "publishedYear": 2007,
+    "language": "English",
+    "rating": {
+      "average": 4.8,
+      "count": 29123
+    },
+    "tags": [
+      "drama",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "The Book Thief",
+    "author": "Markus Zusak",
+    "description": "The Book Thief by Markus Zusak.",
+    "coverImage": "/books/book-thief.webp",
+    "categories": [
+      "Drama"
+    ],
+    "price": 499,
+    "pages": 662,
+    "publisher": "Various Publishers",
+    "publishedYear": 2005,
+    "language": "English",
+    "rating": {
+      "average": 4.9,
+      "count": 29854
+    },
+    "tags": [
+      "drama",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "The Fault in Our Stars",
+    "author": "John Green",
+    "description": "The Fault in Our Stars by John Green.",
+    "coverImage": "/books/fault-stars.webp",
+    "categories": [
+      "Romance"
+    ],
+    "price": 599,
+    "pages": 225,
+    "publisher": "Various Publishers",
+    "publishedYear": 2012,
+    "language": "English",
+    "rating": {
+      "average": 4.3,
+      "count": 30585
+    },
+    "tags": [
+      "romance",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Gone Girl",
+    "author": "Gillian Flynn",
+    "description": "Gone Girl by Gillian Flynn.",
+    "coverImage": "/books/gone-girl.webp",
+    "categories": [
+      "Mystery"
+    ],
+    "price": 699,
+    "pages": 238,
+    "publisher": "Various Publishers",
+    "publishedYear": 2012,
+    "language": "English",
+    "rating": {
+      "average": 4.4,
+      "count": 31316
+    },
+    "tags": [
+      "mystery",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Dune",
+    "author": "Frank Herbert",
+    "description": "Dune by Frank Herbert.",
+    "coverImage": "/books/dune.webp",
+    "categories": [
+      "Sci-Fi"
+    ],
+    "price": 799,
+    "pages": 251,
+    "publisher": "Various Publishers",
+    "publishedYear": 1965,
+    "language": "English",
+    "rating": {
+      "average": 4.5,
+      "count": 32047
+    },
+    "tags": [
+      "sci-fi",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Foundation",
+    "author": "Isaac Asimov",
+    "description": "Foundation by Isaac Asimov.",
+    "coverImage": "/books/foundation.webp",
+    "categories": [
+      "Sci-Fi"
+    ],
+    "price": 899,
+    "pages": 264,
+    "publisher": "Various Publishers",
+    "publishedYear": 1951,
+    "language": "English",
+    "rating": {
+      "average": 4.6,
+      "count": 32778
+    },
+    "tags": [
+      "sci-fi",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "The Martian",
+    "author": "Andy Weir",
+    "description": "The Martian by Andy Weir.",
+    "coverImage": "/books/martian.webp",
+    "categories": [
+      "Sci-Fi"
+    ],
+    "price": 999,
+    "pages": 277,
+    "publisher": "Various Publishers",
+    "publishedYear": 2011,
+    "language": "English",
+    "rating": {
+      "average": 4.7,
+      "count": 33509
+    },
+    "tags": [
+      "sci-fi",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Project Hail Mary",
+    "author": "Andy Weir",
+    "description": "Project Hail Mary by Andy Weir.",
+    "coverImage": "/books/project-hail-mary.webp",
+    "categories": [
+      "Sci-Fi"
+    ],
+    "price": 299,
+    "pages": 290,
+    "publisher": "Various Publishers",
+    "publishedYear": 2021,
+    "language": "English",
+    "rating": {
+      "average": 4.8,
+      "count": 34240
+    },
+    "tags": [
+      "sci-fi",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "The Silent Patient",
+    "author": "Alex Michaelides",
+    "description": "The Silent Patient by Alex Michaelides.",
+    "coverImage": "/books/silent-patient.webp",
+    "categories": [
+      "Mystery"
+    ],
+    "price": 399,
+    "pages": 303,
+    "publisher": "Various Publishers",
+    "publishedYear": 2019,
+    "language": "English",
+    "rating": {
+      "average": 4.9,
+      "count": 34971
+    },
+    "tags": [
+      "mystery",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Educated",
+    "author": "Tara Westover",
+    "description": "Educated by Tara Westover.",
+    "coverImage": "/books/educated.webp",
+    "categories": [
+      "Biography"
+    ],
+    "price": 499,
+    "pages": 316,
+    "publisher": "Various Publishers",
+    "publishedYear": 2018,
+    "language": "English",
+    "rating": {
+      "average": 4.3,
+      "count": 35702
+    },
+    "tags": [
+      "biography",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Becoming",
+    "author": "Michelle Obama",
+    "description": "Becoming by Michelle Obama.",
+    "coverImage": "/books/becoming.webp",
+    "categories": [
+      "Biography"
+    ],
+    "price": 599,
+    "pages": 329,
+    "publisher": "Various Publishers",
+    "publishedYear": 2018,
+    "language": "English",
+    "rating": {
+      "average": 4.4,
+      "count": 36433
+    },
+    "tags": [
+      "biography",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Steve Jobs",
+    "author": "Walter Isaacson",
+    "description": "Steve Jobs by Walter Isaacson.",
+    "coverImage": "/books/steve-jobs.webp",
+    "categories": [
+      "Biography"
+    ],
+    "price": 699,
+    "pages": 342,
+    "publisher": "Various Publishers",
+    "publishedYear": 2011,
+    "language": "English",
+    "rating": {
+      "average": 4.5,
+      "count": 37164
+    },
+    "tags": [
+      "biography",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Zero to One",
+    "author": "Peter Thiel",
+    "description": "Zero to One by Peter Thiel.",
+    "coverImage": "/books/zero-to-one.webp",
+    "categories": [
+      "Business"
+    ],
+    "price": 799,
+    "pages": 355,
+    "publisher": "Various Publishers",
+    "publishedYear": 2014,
+    "language": "English",
+    "rating": {
+      "average": 4.6,
+      "count": 37895
+    },
+    "tags": [
+      "business",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "The Lean Startup",
+    "author": "Eric Ries",
+    "description": "The Lean Startup by Eric Ries.",
+    "coverImage": "/books/lean-startup.webp",
+    "categories": [
+      "Business"
+    ],
+    "price": 899,
+    "pages": 368,
+    "publisher": "Various Publishers",
+    "publishedYear": 2011,
+    "language": "English",
+    "rating": {
+      "average": 4.7,
+      "count": 38626
+    },
+    "tags": [
+      "business",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Cracking the Coding Interview",
+    "author": "Gayle Laakmann McDowell",
+    "description": "Cracking the Coding Interview by Gayle Laakmann McDowell.",
+    "coverImage": "/books/ctci.webp",
+    "categories": [
+      "Education"
+    ],
+    "price": 999,
+    "pages": 381,
+    "publisher": "Various Publishers",
+    "publishedYear": 2015,
+    "language": "English",
+    "rating": {
+      "average": 4.8,
+      "count": 39357
+    },
+    "tags": [
+      "education",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Introduction to Algorithms",
+    "author": "Thomas H. Cormen",
+    "description": "Introduction to Algorithms by Thomas H. Cormen.",
+    "coverImage": "/books/clrs.webp",
+    "categories": [
+      "Education"
+    ],
+    "price": 299,
+    "pages": 394,
+    "publisher": "Various Publishers",
+    "publishedYear": 2009,
+    "language": "English",
+    "rating": {
+      "average": 4.9,
+      "count": 40088
+    },
+    "tags": [
+      "education",
+      "bestseller"
+    ],
+    "isRecommended": false
+  },
+  {
+    "title": "Design Patterns",
+    "author": "Erich Gamma et al.",
+    "description": "Design Patterns by Erich Gamma et al..",
+    "coverImage": "/books/design-patterns.webp",
+    "categories": [
+      "Technology"
+    ],
+    "price": 399,
+    "pages": 407,
+    "publisher": "Various Publishers",
+    "publishedYear": 1994,
+    "language": "English",
+    "rating": {
+      "average": 4.3,
+      "count": 40819
+    },
+    "tags": [
+      "technology",
+      "bestseller"
+    ],
+    "isRecommended": false
+  }
+]
