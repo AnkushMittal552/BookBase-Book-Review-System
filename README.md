@@ -147,3 +147,4 @@ cd frontend && npm run build
 - 📂 Category filtering
 - 📄 Pagination
 - 🌐 Cloudinary-ready for cover images
+MIT License
