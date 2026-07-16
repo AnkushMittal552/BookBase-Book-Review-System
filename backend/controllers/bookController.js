@@ -1,4 +1,29 @@
 const Book = require('../models/Book');
+const Review = require('../models/Review');
+const axios = require('axios');
+const {
+  fetchGoogleBooks,
+  fetchGoogleBookById
+} = require('../services/googleBooksService');
+
+const getRatingStats = async (bookIds) => {
+  if (!Array.isArray(bookIds) || bookIds.length === 0) {
+    return {};
+  }
+
+  const stats = await Review.aggregate([
+    { $match: { book: { $in: bookIds } } },
+    { $group: { _id: '$book', avgRating: { $avg: '$rating' }, numRatings: { $sum: 1 } } }
+  ]);
+
+  return stats.reduce((acc, item) => {
+    acc[item._id] = {
+      average: Number(item.avgRating.toFixed(1)),
+      count: item.numRatings
+    };
+    return acc;
+  }, {});
+};
 
 // @desc    Get all books (with filter, search, pagination)
 // @route   GET /api/books
@@ -6,43 +31,130 @@ const Book = require('../models/Book');
 exports.getBooks = async (req, res, next) => {
   try {
     const {
-      search, category, minPrice, maxPrice, isAudio,
-      sort = '-createdAt', page = 1, limit = 12, recommended
+      search = '',
+      category = '',
+      page = 1,
+      limit = 50,
+      recommended
     } = req.query;
 
-    const query = {};
+    let filter = {};
 
     if (search) {
-      query.$text = { $search: search };
+      filter.title = {
+        $regex: search,
+        $options: "i"
+      };
     }
-    if (category) {
-      query.categories = { $in: [category] };
-    }
-    if (minPrice !== undefined || maxPrice !== undefined) {
-      query.price = {};
-      if (minPrice !== undefined) query.price.$gte = Number(minPrice);
-      if (maxPrice !== undefined) query.price.$lte = Number(maxPrice);
-    }
-    if (isAudio === 'true') query.isAudioBook = true;
-    if (recommended === 'true') query.isRecommended = true;
 
-    const skip = (Number(page) - 1) * Number(limit);
-    const total = await Book.countDocuments(query);
-    const books = await Book.find(query)
-      .sort(sort)
-      .skip(skip)
-      .limit(Number(limit))
-      .select('-fileUrl -audioUrl'); // Don't expose download URLs publicly
+    if (category) {
+      filter.categories = category;
+    }
+
+    if (recommended === "true") {
+      filter.isRecommended = true;
+    }
+
+    const books = await Book.find(filter)
+      .skip((page - 1) * limit)
+      .limit(Number(limit));
+
+    const total = await Book.countDocuments(filter);
 
     res.json({
       success: true,
-      count: books.length,
+      books,
       total,
-      pages: Math.ceil(total / Number(limit)),
-      currentPage: Number(page),
-      books
+      pages: Math.ceil(total / limit),
+      currentPage: Number(page)
+    });
+
+  } catch (err) {
+    next(err);
+  }
+};
+
+// @desc    Search Google Books
+// @route   GET /api/books/google
+// @access  Public
+exports.getGoogleBooks = async (req, res, next) => {
+  try {
+
+    const {
+      search = '',
+      page = 1,
+      limit = 50
+    } = req.query;
+
+    const response = await fetchGoogleBooks({
+      query: search || 'popular books',
+      page,
+      limit
+    });
+
+    const books = (response.books || []).map(book => ({
+      ...book,
+      source: 'google'
+    }));
+
+    res.json({
+      success: true,
+      books,
+      total: response.total,
+      pages: response.pages,
+      currentPage: response.currentPage
+    });
+
+  } catch (error) {
+    next(error);
+  }
+};
+
+// @desc    Find a playable YouTube audiobook video
+// @route   GET /api/books/audio/search
+// @access  Public
+exports.searchAudioBookVideo = async (req, res, next) => {
+  try {
+    const { title = '', author = '' } = req.query;
+    const query = `${title} ${author}`.trim();
+    // Keep compatibility with the existing frontend-named variable while
+    // allowing deployments to use the server-side YOUTUBE_API_KEY name.
+    const youtubeApiKey = process.env.YOUTUBE_API_KEY || process.env.VITE_YOUTUBE_API_KEY;
+
+    if (!query) {
+      return res.status(400).json({ success: false, message: 'A book title is required' });
+    }
+
+    if (!youtubeApiKey) {
+      return res.status(503).json({
+        success: false,
+        message: 'YouTube search is not configured on the server'
+      });
+    }
+
+    const { data } = await axios.get('https://www.googleapis.com/youtube/v3/search', {
+      params: {
+        part: 'snippet',
+        q: `${query} audiobook`,
+        maxResults: 1,
+        type: 'video',
+        videoEmbeddable: 'true',
+        key: youtubeApiKey
+      },
+      timeout: 10000
+    });
+
+    res.json({
+      success: true,
+      videoId: data.items?.[0]?.id?.videoId || null
     });
   } catch (error) {
+    if (error.response?.status === 403) {
+      return res.status(502).json({
+        success: false,
+        message: 'YouTube rejected the configured API key or its quota has been reached'
+      });
+    }
     next(error);
   }
 };
@@ -50,19 +162,68 @@ exports.getBooks = async (req, res, next) => {
 // @desc    Get single book
 // @route   GET /api/books/:id
 // @access  Public
+// @desc    Get single book
+// @route   GET /api/books/:id
+// @access  Public
 exports.getBook = async (req, res, next) => {
   try {
-    const book = await Book.findById(req.params.id).populate('addedBy', 'name');
-    if (!book) {
-      return res.status(404).json({ success: false, message: 'Book not found' });
-    }
-    // Increment view count
-    book.viewCount += 1;
-    await book.save({ validateBeforeSave: false });
 
-    res.json({ success: true, book });
-  } catch (error) {
-    next(error);
+    let book = await Book.findById(req.params.id);
+
+    // If not found in MongoDB, check Google Books
+    if (!book) {
+
+      const response = await fetchGoogleBookById(req.params.id);
+
+      if (!response.success || !response.book) {
+        return res.status(404).json({
+          success: false,
+          message: 'Book not found'
+        });
+      }
+
+      book = response.book;
+    }
+
+    const ratingStats = await Review.aggregate([
+      {
+        $match: {
+          book: req.params.id
+        }
+      },
+      {
+        $group: {
+          _id: '$book',
+          avgRating: { $avg: '$rating' },
+          numRatings: { $sum: 1 }
+        }
+      }
+    ]);
+
+    const reviewStats = ratingStats[0];
+
+    const result = {
+      ...book.toObject?.() || book,
+      rating: reviewStats
+        ? {
+            average: Number(reviewStats.avgRating.toFixed(1)),
+            count: reviewStats.numRatings
+          }
+        : book.rating || {
+            average: 0,
+            count: 0
+          }
+    };
+
+    res.json({
+      success: true,
+      book: result
+    });
+
+  } catch (err) {
+
+    next(err);
+
   }
 };
 
@@ -136,11 +297,19 @@ exports.downloadBook = async (req, res, next) => {
 // @access  Public
 exports.getRecommended = async (req, res, next) => {
   try {
-    const books = await Book.find({ isRecommended: true })
-      .sort('-rating.average')
-      .limit(8);
-    res.json({ success: true, books });
-  } catch (error) {
-    next(error);
+
+    const books = await Book.find({
+      isRecommended: true
+    }).limit(8);
+
+    res.json({
+      success: true,
+      books
+    });
+
+  } catch (err) {
+
+    next(err);
+
   }
 };

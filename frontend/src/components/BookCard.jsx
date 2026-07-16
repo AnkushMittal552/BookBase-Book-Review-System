@@ -3,7 +3,7 @@ import { HiHeart, HiStar } from 'react-icons/hi';
 import toast from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 
-export default function BookCard({ book, showFavBtn = true }) {
+export default function BookCard({ book, showFavBtn = true, showRating = true }) {
 
   const navigate = useNavigate();
 
@@ -27,6 +27,8 @@ export default function BookCard({ book, showFavBtn = true }) {
     );
 
   }, [book]);
+
+  const placeholderCover = 'https://via.placeholder.com/400x600?text=No+Cover';
 
   const handleFav = (e) => {
 
@@ -90,6 +92,11 @@ export default function BookCard({ book, showFavBtn = true }) {
           <img
             src={book.coverImage}
             alt={book.title}
+            onError={(e) => {
+              if (e.currentTarget.src !== placeholderCover) {
+                e.currentTarget.src = placeholderCover;
+              }
+            }}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
 
@@ -105,7 +112,7 @@ export default function BookCard({ book, showFavBtn = true }) {
 
         )}
 
-        {book.rating?.average > 0 && (
+        {showRating && book.rating?.average > 0 && (
 
           <div className="absolute top-2 right-2 bg-yellow-400 text-yellow-900 text-xs font-bold px-1.5 py-0.5 rounded-lg flex items-center gap-1">
 
@@ -151,11 +158,11 @@ export default function BookCard({ book, showFavBtn = true }) {
 
         </p>
 
-        {book.category && (
+        {(book.category || book.categories?.[0]) && (
 
           <p className="text-[11px] text-primary mt-1 font-medium">
 
-            {book.category}
+            {book.category || book.categories?.[0]}
 
           </p>
 

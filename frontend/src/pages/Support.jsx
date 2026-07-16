@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { HiSupport, HiMail, HiChat, HiQuestionMarkCircle } from 'react-icons/hi';
+import { HiSupport, HiMail, HiQuestionMarkCircle, HiCalendar } from 'react-icons/hi';
 
 const FAQS = [
-  { q: 'How do I download a book?', a: 'Go to the book detail page and click "Download". The file will open in a new tab.' },
-  { q: 'Can I read books offline?', a: 'Once downloaded as PDF, you can read books in any PDF reader without internet.' },
+  { q: 'How do I submit a review?', a: 'Rate the book, write your review, and click Submit.' },
+  { q: 'How do I add books to favourites?', a: 'Click the ❤ Favourite button on the book page.' },
   { q: 'How do I add a book to my library?', a: 'On any book detail page, click "Add to Library". It will appear in My Library.' },
-  { q: 'Are all books free?', a: 'Some books are free, others are premium. Price is shown on the book card.' },
+  { q: 'Are all books free?', a: 'Some books are free, others are premium.' },
   { q: 'How do audio books work?', a: 'Audio books stream directly in your browser. Look for the play button on the book detail page.' },
 ];
 
@@ -23,8 +23,8 @@ export default function Support() {
   };
 
   return (
-    <div className="max-w-3xl space-y-8">
-      <div className="flex items-center gap-3">
+    <div className="w-full space-y-8 px-4 py-8">
+      <div className="flex flex-wrap items-center gap-3">
         <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
           <HiSupport className="text-primary text-xl" />
         </div>
@@ -35,11 +35,11 @@ export default function Support() {
       </div>
 
       {/* Quick links */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {[
           { icon: HiMail, label: 'Email Us', sub: 'support@bookbase.app' },
-          { icon: HiChat, label: 'Live Chat', sub: 'Available 9am – 6pm IST' },
-          { icon: HiQuestionMarkCircle, label: 'Documentation', sub: 'Guides & tutorials' },
+          { icon: HiCalendar, label: '📞 Contact Support', sub: '+91 1234567890' },
+          { icon: HiQuestionMarkCircle, label: '❓ Help Center', sub: 'FAQs & support' },
         ].map(({ icon: Icon, label, sub }) => (
           <div key={label} className="card p-4 text-center hover:shadow-hover transition-all cursor-pointer">
             <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-2">
@@ -93,6 +93,7 @@ export default function Support() {
           <button type="submit" className="btn-primary">Send Message</button>
         </form>
       </div>
+      
     </div>
   );
 }

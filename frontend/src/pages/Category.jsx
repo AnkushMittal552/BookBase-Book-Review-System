@@ -5,10 +5,23 @@ import CategoryFilter from '../components/CategoryFilter';
 import { useBooks } from '../hooks/useBooks';
 
 export default function Category() {
-  const { books, loading } = useBooks();
-
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('All');
+
+  const { books, loading } = useBooks({
+    limit: 40,
+    category: category === 'All' ? '' : category,
+    search: search.trim()
+  });
+
+  const categories = useMemo(() => {
+    const allCategories = books.flatMap((book) => book.categories || []);
+    const unique = Array.from(
+      new Set(allCategories.map((cat) => cat?.trim()).filter(Boolean))
+    );
+    return ['All', ...unique];
+  }, [books]);
+
   const [sort, setSort] = useState('-createdAt');
   const [page, setPage] = useState(1);
 
@@ -29,8 +42,11 @@ export default function Category() {
     }
 
     if (category !== 'All') {
+      const selected = category.toLowerCase();
       result = result.filter((book) =>
-        book.categories?.includes(category)
+        (book.categories || []).some((cat) =>
+          cat?.toLowerCase().includes(selected)
+        )
       );
     }
 
@@ -81,7 +97,7 @@ export default function Category() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="w-full min-h-full space-y-6 px-0 py-0">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -125,7 +141,7 @@ export default function Category() {
       {/* Search */}
       <form
         onSubmit={handleSearch}
-        className="relative max-w-md"
+        className="relative w-full max-w-full"
       >
         <HiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
 
@@ -146,6 +162,7 @@ export default function Category() {
 
       {/* Categories */}
       <CategoryFilter
+        categories={categories}
         active={category}
         onChange={(cat) => {
           setCategory(cat);

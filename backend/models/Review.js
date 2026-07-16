@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 const reviewSchema = new mongoose.Schema({
   book: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Book',
+    type: String,
     required: true
   },
   user: {
@@ -27,6 +26,10 @@ const reviewSchema = new mongoose.Schema({
     required: [true, 'Review comment is required'],
     maxlength: [1000, 'Comment too long']
   },
+  edited: {
+  type: Boolean,
+  default: false
+},
   likes: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
@@ -43,15 +46,7 @@ reviewSchema.statics.calcAverageRating = async function (bookId) {
     { $group: { _id: '$book', avgRating: { $avg: '$rating' }, numRatings: { $sum: 1 } } }
   ]);
 
-  const Book = require('./Book');
-  if (stats.length > 0) {
-    await Book.findByIdAndUpdate(bookId, {
-      'rating.average': Math.round(stats[0].avgRating * 10) / 10,
-      'rating.count': stats[0].numRatings
-    });
-  } else {
-    await Book.findByIdAndUpdate(bookId, { 'rating.average': 0, 'rating.count': 0 });
-  }
+  return stats[0] || null;
 };
 
 reviewSchema.post('save', function () {

@@ -1,19 +1,46 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import {
   HiArrowLeft,
   HiHeart,
   HiBookOpen,
-  HiTrash
+  HiTrash,
+  HiOutlineTrash
 } from 'react-icons/hi';
 
 import { audioBooks } from '../services/audioBooks';
 import { searchAudiobook } from '../services/youtube';
+import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
+import toast from 'react-hot-toast';
+
+const getYouTubeVideoId = (value) => {
+  const input = value.trim();
+  if (/^[A-Za-z0-9_-]{11}$/.test(input)) return input;
+
+  try {
+    const url = new URL(input);
+    const host = url.hostname.replace(/^www\./, '');
+    let id = '';
+
+    if (host === 'youtu.be') {
+      id = url.pathname.split('/')[1] || '';
+    } else if (host.endsWith('youtube.com')) {
+      id = url.searchParams.get('v') || url.pathname.match(/^\/(?:embed|shorts|live)\/([^/?]+)/)?.[1] || '';
+    }
+
+    return /^[A-Za-z0-9_-]{11}$/.test(id) ? id : '';
+  } catch {
+    return '';
+  }
+};
 
 export default function AudioPlayer() {
 
   const { id } = useParams();
+
+  const [searchParams] = useSearchParams();
+  const matchedVideoId = searchParams.get('video');
 
   const navigate = useNavigate();
 
@@ -37,41 +64,69 @@ export default function AudioPlayer() {
   const [reviews, setReviews] =
     useState([]);
 
-  const book = audioBooks.find(
-    b => b._id === id
-  );
+  const [book, setBook] = useState(null);
+  const [youtubeUrl, setYoutubeUrl] = useState('');
+  const [youtubeUrlError, setYoutubeUrlError] = useState('');
+
+  const youtubeSearchUrl = book
+    ? `https://www.youtube.com/results?search_query=${encodeURIComponent(`${book.title} ${book.author} audiobook`)}`
+    : '';
+
+  useEffect(() => {
+    // try local list first
+    const local = audioBooks.find(b => b._id === id);
+    if (local) {
+      setBook(local);
+      return;
+    }
+
+    // otherwise fetch from backend
+    const loadRemote = async () => {
+      try {
+        const res = await api.get(`/books/${id}`);
+        if (res.data?.book) setBook(res.data.book);
+      } catch (err) {
+        console.error('Failed to load book', err);
+      }
+    };
+
+    loadRemote();
+  }, [id]);
 
   useEffect(() => {
 
     const loadVideo = async () => {
-
       if (!book) return;
 
-      const result =
-        await searchAudiobook(
-          book.title
-        );
+      try {
+        // Reuse the exact video that made this book eligible on the list page.
+        if (matchedVideoId) {
+          setVideoId(matchedVideoId);
+          return;
+        }
 
-      if (result) {
-        setVideoId(result);
+        // Supports opening a bookmarked audiobook URL without a video parameter.
+        const result = await searchAudiobook(book.title, book.author);
+        if (result) setVideoId(result);
+      } catch (err) {
+        console.error('YouTube lookup failed', err);
+      } finally {
+        setLoading(false);
       }
-
-      setLoading(false);
-
     };
 
     loadVideo();
 
-  }, [book]);
+  }, [book, matchedVideoId]);
 
   useEffect(() => {
 
     if (!book) return;
 
     const library =
-      JSON.parse(
-        localStorage.getItem('library')
-      ) || [];
+  JSON.parse(
+    localStorage.getItem('myLibrary')
+  ) || [];
 
     const favourites =
       JSON.parse(
@@ -103,56 +158,60 @@ export default function AudioPlayer() {
 
   const addToLibrary = () => {
 
-    const library =
-      JSON.parse(
-        localStorage.getItem('library')
-      ) || [];
+  const library =
+    JSON.parse(
+      localStorage.getItem('myLibrary')
+    ) || [];
 
-    if (
-      !library.some(
-        item => item._id === book._id
-      )
-    ) {
+  if (
+    !library.some(
+      item => item._id === book._id
+    )
+  ) {
 
-      library.push({
-        ...book,
-        type: 'audio'
-      });
-
-      localStorage.setItem(
-        'library',
-        JSON.stringify(library)
-      );
-
-      setIsInLibrary(true);
-
-    }
-
-  };
-
-  const removeFromLibrary = () => {
-
-    let library =
-      JSON.parse(
-        localStorage.getItem('library')
-      ) || [];
-
-    library =
-      library.filter(
-        item =>
-          item._id !== book._id
-      );
+    library.push({
+      ...book,
+      isAudioBook: true
+    });
 
     localStorage.setItem(
-      'library',
+      'myLibrary',
       JSON.stringify(library)
     );
 
-    setIsInLibrary(false);
+    setIsInLibrary(true);
+    toast.success('Added to library');
 
-  };
+  }
+
+};
+
+  const removeFromLibrary = () => {
+
+  let library =
+    JSON.parse(
+      localStorage.getItem('myLibrary')
+    ) || [];
+
+  library =
+    library.filter(
+      item =>
+        item._id !== book._id
+    );
+
+  localStorage.setItem(
+    'myLibrary',
+    JSON.stringify(library)
+  );
+
+  setIsInLibrary(false);
+  toast.success('Removed from library');
+
+};
 
   const toggleFavourite = () => {
+
+    const wasFav = isFavourite;
 
     let favourites =
       JSON.parse(
@@ -186,67 +245,93 @@ export default function AudioPlayer() {
     setIsFavourite(
       prev => !prev
     );
+    toast.success(wasFav ? 'Removed from favourites' : 'Added to favourites');
 
   };
 
   const submitReview = () => {
 
-    if (!review.trim()) return;
+  if (!review.trim()) return;
 
-    const newReview = {
+  const newReview = {
 
-      name:
-        user?.name ||
-        'Anonymous',
+    name: user?.name || 'Anonymous',
 
-      comment: review,
+    comment: review,
 
-      date:
-        new Date()
-          .toLocaleDateString()
-
-    };
-
-    const storedReviews =
-      JSON.parse(
-        localStorage.getItem(
-          `reviews-${book._id}`
-        )
-      ) || [];
-
-    const updatedReviews = [
-      newReview,
-      ...storedReviews
-    ];
-
-    localStorage.setItem(
-      `reviews-${book._id}`,
-      JSON.stringify(
-        updatedReviews
-      )
-    );
-
-    setReviews(
-      updatedReviews
-    );
-
-    setReview('');
+    date: new Date().toLocaleDateString()
 
   };
 
-  if (!book) {
+  const storedReviews =
+    JSON.parse(
+      localStorage.getItem(
+        `reviews-${book._id}`
+      )
+    ) || [];
 
-    return (
+  const updatedReviews = [
+    newReview,
+    ...storedReviews
+  ];
 
-      <div className="text-center py-20">
+  localStorage.setItem(
+    `reviews-${book._id}`,
+    JSON.stringify(updatedReviews)
+  );
 
-        Audio book not found
+  setReviews(updatedReviews);
 
-      </div>
+  setReview('');
+  toast.success('Review submitted');
 
-    );
+};
 
+// 👇 PLACE IT HERE (outside submitReview)
+const deleteReview = (indexToDelete) => {
+
+  if (!window.confirm('Delete this review?')) return;
+
+  const updatedReviews = reviews.filter(
+    (_, index) => index !== indexToDelete
+  );
+
+  localStorage.setItem(
+    `reviews-${book._id}`,
+    JSON.stringify(updatedReviews)
+  );
+
+  setReviews(updatedReviews);
+  toast.success('Review deleted');
+
+};
+
+const playYouTubeUrl = (event) => {
+  event.preventDefault();
+  const id = getYouTubeVideoId(youtubeUrl);
+
+  if (!id) {
+    setYoutubeUrlError('Paste a valid YouTube video link or 11-character video ID.');
+    return;
   }
+
+  setYoutubeUrlError('');
+  setVideoId(id);
+};
+
+if (!book) {
+
+  return (
+
+    <div className="text-center py-20">
+
+      Audio book not found
+
+    </div>
+
+  );
+
+}
 
   return (
 
@@ -351,7 +436,37 @@ export default function AudioPlayer() {
 
             <div className="text-center py-10 text-gray-500">
 
-              No audiobook found on YouTube
+              <p>No playable YouTube result was found automatically.</p>
+
+              <p className="text-sm mt-2">
+                Paste a YouTube video link below to play it here.
+              </p>
+
+              <form onSubmit={playYouTubeUrl} className="max-w-xl mx-auto mt-4 flex gap-2">
+                <input
+                  value={youtubeUrl}
+                  onChange={(event) => setYoutubeUrl(event.target.value)}
+                  placeholder="https://www.youtube.com/watch?v=..."
+                  aria-label="YouTube video link"
+                  className="input flex-1"
+                />
+                <button type="submit" className="btn-primary whitespace-nowrap">
+                  Play here
+                </button>
+              </form>
+
+              {youtubeUrlError && (
+                <p className="text-sm text-red-500 mt-2">{youtubeUrlError}</p>
+              )}
+
+              <a
+                href={youtubeSearchUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="text-primary text-sm inline-block mt-4 hover:underline"
+              >
+                Find an audiobook on YouTube
+              </a>
 
             </div>
 
@@ -388,33 +503,55 @@ export default function AudioPlayer() {
 
           <div className="space-y-4 mt-6">
 
-            {reviews.map(
-              (
-                item,
-                index
-              ) => (
+            {reviews.map((item, index) => (
 
                 <div
-                  key={index}
-                  className="border-b pb-3"
-                >
+  key={index}
+  className="border-b pb-3 flex justify-between items-start"
+>
 
-                  <p className="font-semibold">
-                    {item.name}
-                  </p>
+  <div>
 
-                  <p className="text-gray-600">
-                    {item.comment}
-                  </p>
+    <p className="font-semibold">
 
-                  <p className="text-xs text-gray-400 mt-1">
-                    {item.date}
-                  </p>
+      {item.name}
 
-                </div>
+    </p>
 
-              )
-            )}
+    <p className="text-gray-600">
+
+      {item.comment}
+
+    </p>
+
+    <p className="text-xs text-gray-400 mt-1">
+
+      {item.date}
+
+    </p>
+
+  </div>
+
+  {item.name === (user?.name || 'Anonymous') && (
+
+    <button
+
+      onClick={() => deleteReview(index)}
+      className="text-red-500 hover:text-red-700"
+
+      title="Delete Review"
+
+    >
+
+      <HiOutlineTrash size={18} />
+
+    </button>
+
+  )}
+
+</div>
+))}
+
 
           </div>
 

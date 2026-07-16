@@ -6,7 +6,7 @@ import Layout from './components/Layout';
 import Discover from './pages/Discover';
 import Category from './pages/Category';
 import MyLibrary from './pages/MyLibrary';
-import Download from './pages/Download';
+// import Download from './pages/Download';
 import AudioBooks from './pages/AudioBooks';
 import AudioPlayer from './pages/AudioPlayer';
 import Favourite from './pages/Favourite';
@@ -50,7 +50,7 @@ export default function App() {
         <Route index element={<Discover />} />
         <Route path="category" element={<Category />} />
         <Route path="library" element={<MyLibrary />} />
-        <Route path="downloads" element={<Download />} />
+        {/* <Route path="downloads" element={<Download />} /> */}
         <Route path="audio" element={<AudioBooks />} />
 
         {/* ADD THIS ROUTE */}

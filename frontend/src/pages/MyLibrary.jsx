@@ -82,7 +82,13 @@ export default function MyLibrary() {
             <div
               key={book._id}
               className="card p-3 cursor-pointer group"
-              onClick={() => navigate(`/book/${book._id}`)}
+              onClick={() =>
+  navigate(
+    book.isAudioBook
+      ? `/audio/${book._id}`
+      : `/book/${book._id}`
+  )
+}
             >
 
               <div className="relative overflow-hidden rounded-xl mb-3 aspect-[3/4] bg-gray-100">

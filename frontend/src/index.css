@@ -6,6 +6,30 @@
   body {
     @apply bg-surface font-sans text-gray-800 antialiased;
   }
+
+  .dark body {
+    @apply bg-slate-950 text-white;
+  }
+
+  .dark .card {
+    @apply bg-slate-900 border border-slate-700;
+  }
+
+  .dark .input {
+    @apply bg-slate-900 border-slate-700 text-white placeholder:text-slate-400;
+  }
+
+  .dark .sidebar-link {
+    @apply text-slate-300 hover:text-white hover:bg-slate-800 border-slate-700;
+  }
+
+  .dark .sidebar-link.active {
+    @apply text-white bg-primary/20;
+  }
+
+  .dark ::-webkit-scrollbar-track { @apply bg-slate-900; }
+  .dark ::-webkit-scrollbar-thumb { @apply bg-primary rounded-full; }
+
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { @apply bg-gray-100; }
   ::-webkit-scrollbar-thumb { @apply bg-primary rounded-full; }

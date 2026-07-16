@@ -22,7 +22,11 @@ export default function BookDetail() {
 
   const { user, refreshUser } = useAuth();
 
-  const { book, loading } = useBook(id);
+  const {
+    book,
+    loading,
+    refetch: refetchBook,
+  } = useBook(id);
 
   const [reviews, setReviews] = useState([]);
 
@@ -56,62 +60,93 @@ export default function BookDetail() {
   }, [id]);
 
   useEffect(() => {
+    if (!book) return;
+    fetchReviews();
+  }, [book]);
 
-    api.get(`/reviews/book/${id}`)
-
-      .then(res => setReviews(res.data.reviews))
-
-      .catch(() => {
-
-        setReviews([
-          {
-            _id: '1',
-            user: {
-              name: book?.author || 'Reader'
-            },
-            rating: 5,
-            comment:
-              'Great book with interesting content.',
-            createdAt: new Date()
-          },
-
-          {
-            _id: '2',
-            user: {
-              name: 'A. Bernstein'
-            },
-            rating: 4,
-            comment:
-              'Very informative and enjoyable.',
-            createdAt: new Date()
-          }
-        ]);
-
-      });
-
-  }, [id, book]);
-
-  const handleFav = async () => {
-
+  const fetchReviews = async () => {
+    if (!book?._id) return;
     try {
-
-      const res =
-        await api.put(
-          `/users/favourites/${id}`
-        );
-
-      toast.success(res.data.message);
-
-      refreshUser();
-
+      const res = await api.get(`/reviews/book/${book._id}`);
+      setReviews(res.data.reviews);
     } catch (err) {
-
-      toast.error(err.message);
-
+      console.error(err);
+      setReviews([]);
     }
   };
 
-  const handleAddToLibrary = () => {
+  const refreshBook = async () => {
+    if (!book?._id) return;
+    try {
+      const res = await api.get(`/books/${book._id}`);
+      if (res.data.book) {
+        setReviews((prev) => prev);
+      }
+    } catch (err) {
+      console.error('Failed to refresh book:', err);
+    }
+  };
+
+  const handleFav = async () => {
+
+  try {
+
+    const res = await api.put(
+      `/users/favourites/${id}`
+    );
+
+    toast.success(res.data.message);
+
+    await refreshUser();
+
+    // Keep the local favourites cache in sync for settings and cards
+    try {
+      const favourites = JSON.parse(localStorage.getItem('favourites')) || [];
+      const updatedFavourites = isFav
+        ? favourites.filter(item => item._id !== id)
+        : [...favourites, book];
+      localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
+    } catch (storageErr) {
+      console.error('Favourite storage update failed:', storageErr);
+    }
+
+    // Try to create notification, but don't break favourite if it fails
+    try {
+
+      await api.post('/notifications', {
+
+        title: '❤️ Favourite Added',
+
+        message: `${book.title} was added to your favourites.`,
+
+        type: 'favourite'
+
+      });
+
+    } catch (notificationError) {
+
+      console.error(
+        'Notification Error:',
+        notificationError
+      );
+
+    }
+
+  } catch (err) {
+
+    console.error(err);
+
+    toast.error(
+      err.response?.data?.message ||
+      err.message ||
+      'Unable to update favourites'
+    );
+
+  }
+
+};
+
+  const handleAddToLibrary = async () => {
 
     const library =
       JSON.parse(
@@ -124,11 +159,7 @@ export default function BookDetail() {
       );
 
     if (alreadyExists) {
-
-      toast.success(
-        'Book already in library'
-      );
-
+      toast.success('Book already in library');
       return;
     }
 
@@ -139,11 +170,20 @@ export default function BookDetail() {
       JSON.stringify(library)
     );
 
-    setInLibrary(true);
+    try {
+      await api.post('/notifications', {
+        title: '📚 Book Added',
+        message: `${book.title} was added to your library.`,
+        type: 'library'
+      });
 
-    toast.success(
-      'Added to library'
-    );
+      window.dispatchEvent(new Event('notificationsChanged'));
+    } catch (err) {
+      console.log(err);
+    }
+
+    setInLibrary(true);
+    toast.success('Added to library');
   };
 
   const handleRemoveFromLibrary = () => {
@@ -175,56 +215,72 @@ export default function BookDetail() {
     e.preventDefault();
 
     if (!myRating) {
-
-      toast.error(
-        'Please select a rating'
-      );
-
+      toast.error('Please select a rating');
       return;
     }
 
     setSubmitting(true);
 
     try {
-
-      const newReview = {
-
-        _id: Date.now(),
-
-        user: {
-          name: user?.name || 'User'
-        },
-
-        rating: myRating,
-
-        comment: myComment,
-
-        createdAt: new Date()
-      };
-
-      setReviews(prev => [
-        newReview,
-        ...prev
-      ]);
-
-      setMyRating(0);
-
-      setMyComment('');
-
-      toast.success(
-        'Review submitted!'
+      // Submit review
+      await api.post(
+        `/reviews/book/${book._id}`,
+        {
+          rating: myRating,
+          title: '',
+          comment: myComment
+        }
       );
 
-    } catch (err) {
+      // Reload latest reviews
+      const reviewsRes = await api.get(`/reviews/book/${book._id}`);
+      setReviews(reviewsRes.data.reviews);
 
-      toast.error(err.message);
+      // Refresh book rating from backend
+      await refetchBook();
 
-    } finally {
+      // Create notification
+      await api.post('/notifications', {
 
-      setSubmitting(false);
+      title: '⭐ Review Submitted',
 
-    }
-  };
+      message: `You reviewed "${book.title}".`,
+
+      type: 'review'
+
+    });
+
+    // Clear form
+    setMyRating(0);
+
+    setMyComment('');
+
+    toast.success('Review submitted successfully');
+
+    // Reload the page so all parts of the UI update consistently
+    window.location.reload();
+
+  } catch (err) {
+
+    console.error(err);
+
+    toast.error(
+
+      err.response?.data?.message ||
+
+      err.message ||
+
+      'Unable to submit review'
+
+    );
+
+  } finally {
+
+    setSubmitting(false);
+
+  }
+
+};
 
   const handleDeleteReview = async (reviewId) => {
 
@@ -234,9 +290,8 @@ export default function BookDetail() {
 
     await api.delete(`/reviews/${reviewId}`);
 
-    setReviews(prev =>
-      prev.filter(r => r._id !== reviewId)
-    );
+    await fetchReviews();
+    await refetchBook();
 
     toast.success("Review deleted");
 
@@ -278,9 +333,12 @@ export default function BookDetail() {
     );
   }
 
+  const displayRating = book?.source === 'static' ? 0 : book.rating?.average || 0;
+  const displayRatingCount = book?.source === 'static' ? 0 : book.rating?.count || 0;
+
   return (
 
-    <div className="max-w-5xl space-y-8">
+    <div className="w-full max-w-full space-y-8">
 
       <button
         onClick={() => navigate(-1)}
@@ -301,6 +359,10 @@ export default function BookDetail() {
             <img
               src={book.coverImage}
               alt={book.title}
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = 'https://via.placeholder.com/280x420?text=No+Cover';
+              }}
               className="w-full h-full object-cover"
             />
 
@@ -344,20 +406,18 @@ export default function BookDetail() {
           </div>
 
           <div className="flex items-center gap-3">
-
             <StarRating
-              rating={book.rating?.average}
+              rating={displayRating}
               size="md"
             />
 
             <span className="font-bold text-gray-700">
-              {book.rating?.average || 0}
+              {displayRating}
             </span>
 
             <span className="text-gray-400 text-sm">
-              ({book.rating?.count || 0} ratings)
+              ({displayRatingCount} ratings)
             </span>
-
           </div>
 
           <div className="grid grid-cols-3 gap-3">
@@ -398,10 +458,6 @@ export default function BookDetail() {
             ))}
           </div>
 
-          <p className="text-gray-600 text-sm leading-relaxed line-clamp-4">
-            {book.description}
-          </p>
-
           <div className="flex items-center gap-3 flex-wrap">
 
             <span className="text-lg font-bold text-green-500">
@@ -429,32 +485,45 @@ export default function BookDetail() {
               </button>
             )}
 
-            {book.readUrl && (
-
+            {book.source === 'google' && (
               <button
-                onClick={() =>
-                  window.open(
-                    book.readUrl,
-                    '_blank'
-                  )
-                }
-                className="btn-outline"
+                onClick={() => {
+                  const library = JSON.parse(localStorage.getItem('staticDiscoverBooks')) || [];
+                  const exists = library.some((item) => item._id === book._id);
+                  if (exists) {
+                    toast.success('Book already added to static discover');
+                    return;
+                  }
+
+                  library.push({ ...book, source: 'google' });
+                  localStorage.setItem('staticDiscoverBooks', JSON.stringify(library));
+                  window.dispatchEvent(new Event('staticDiscoverChanged'));
+                  toast.success('Added to static discover');
+                }}
+                className="btn-primary"
               >
-                <HiBookOpen />
-                Read Online
+                <HiPlus />
+                Add to Static Discover
               </button>
             )}
 
             <button
-              onClick={handleFav}
-              className={`w-10 h-10 rounded-xl flex items-center justify-center border-2 transition-colors
-              ${
-                isFav
-                  ? 'border-red-500 bg-red-50 text-red-500'
-                  : 'border-gray-200 text-gray-400 hover:border-red-500 hover:text-red-500'
-              }`}
-            >
-              <HiHeart />
+              onClick={() => {
+
+    if (!book.readUrl) {
+
+      toast.error("Read link not available");
+      return;
+
+    }
+
+    window.open(book.readUrl, "_blank");
+
+  }}
+  className="btn-outline"
+>
+              <HiBookOpen />
+              Read Online
             </button>
 
           </div>
@@ -517,14 +586,14 @@ export default function BookDetail() {
 
           <div className="space-y-4">
 
-            {reviews.map(r => (
+            {reviews.map((r) => (
 
   <div
     key={r._id}
     className="flex gap-3 border-b border-gray-100 pb-4 last:border-0"
   >
 
-    {/* <div className="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm shrink-0">
+    <div className="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm shrink-0">
       {r.user?.name?.charAt(0).toUpperCase()}
     </div>
 
@@ -532,32 +601,31 @@ export default function BookDetail() {
 
       <div className="flex items-center justify-between">
 
-        <div>
+        <div className="flex items-center gap-2">
 
-          <div className="flex items-center gap-2">
+          <span className="font-medium text-sm text-gray-800">
+            {r.user?.name}
+          </span>
 
-            <span className="font-medium text-sm text-gray-800">
-              {r.user?.name}
-            </span>
-
-            <StarRating
-              rating={r.rating}
-              size="sm"
-            />
-
-          </div>
+          <StarRating
+            rating={r.rating}
+            size="sm"
+          />
 
         </div>
 
-        {user?._id === (r.user?._id || r.user) && (
-  <button
-    onClick={() => handleDeleteReview(r._id)}
-    className="text-red-500 hover:text-red-700 transition-colors"
-    title="Delete Review"
-  >
-    <HiOutlineTrash size={18} />
-  </button>
-)}
+        {(user?._id === (r.user?._id || r.user) ||
+          user?.role === 'admin') && (
+
+          <button
+            onClick={() => handleDeleteReview(r._id)}
+            className="text-red-500 hover:text-red-700"
+            title="Delete Review"
+          >
+            <HiOutlineTrash size={18} />
+          </button>
+
+        )}
 
       </div>
 
@@ -566,51 +634,22 @@ export default function BookDetail() {
       </p>
 
       <p className="text-xs text-gray-400 mt-1">
+
         {new Date(r.createdAt).toLocaleDateString()}
+
+        {r.edited && (
+          <span className="ml-2 italic text-primary">
+            • Edited
+          </span>
+        )}
+
       </p>
 
     </div>
 
-  </div> }
+  </div>
 
-))*/}
-
-                <div className="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm shrink-0">
-
-                  {r.user?.name
-                    ?.charAt(0)
-                    .toUpperCase()}
-
-                </div>
-
-                <div className="flex-1">
-
-                  <div className="flex items-center gap-2">
-
-                    <span className="font-medium text-sm text-gray-800">
-                      {r.user?.name}
-                    </span>
-
-                    <StarRating
-                      rating={r.rating}
-                      size="sm"
-                    />
-
-                  </div>
-
-                  <p className="text-gray-600 text-sm mt-1">
-                    {r.comment}
-                  </p>
-
-                  <p className="text-xs text-gray-400 mt-1">
-                    {new Date(
-                      r.createdAt
-                    ).toLocaleDateString()}
-                  </p>
-
-                </div>
-              </div>
-            ))}
+))}
           </div>
         )}
       </div>

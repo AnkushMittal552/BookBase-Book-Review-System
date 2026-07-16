@@ -63,6 +63,10 @@ const bookSchema = new mongoose.Schema({
     type: String,   // PDF download link
     default: ''
   },
+  readUrl: {
+  type: String,
+  default: ''
+},
   audioUrl: {
     type: String,   // Audio file link
     default: ''

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HiArrowRight, HiBookOpen } from 'react-icons/hi';
 import BookCard from '../components/BookCard';
@@ -6,38 +6,21 @@ import StarRating from '../components/StarRating';
 //import { searchBooks } from '../services/googleBooks';
 import { useBooks } from '../hooks/useBooks';
 
-const CATEGORIES = [
-  'All',
-  'Sci-Fi',
-  'Fantasy',
-  'Drama',
-  'Business',
-  'Education',
-  'Geography'
-];
-
 export default function Discover() {
   const navigate = useNavigate();
+  const [source, setSource] = useState('static');
+  const [googleQuery, setGoogleQuery] = useState('');
 
-  //const [recommended, setRecommended] = useState([]);
-  //const [categoryBooks, setCategoryBooks] = useState([]);
-  //const [featured, setFeatured] = useState(null);
-  const { books, loading } = useBooks();
-  const [activeCat, setActiveCat] = useState('');
-  //const [loading, setLoading] = useState(true);
-  const recommended = books.filter(book => book.isRecommended);
+  const { books, loading } = useBooks({
+    limit: 50,
+    source,
+    search: source === 'google' ? googleQuery : ''
+  });
 
-// const categoryBooks = activeCat
-//   ? books.filter(book => book.categories?.includes(activeCat))
-//   : books;
-const categoryBooks = activeCat
-  ? books.filter(book =>
-      Array.isArray(book.categories) &&
-      book.categories.includes(activeCat)
-    )
-  : books;
-
-const featured = recommended[0] || books[0];
+  const recommended = books.filter((book) => book.isRecommended);
+  const featured = recommended[0] || books[0];
+  const featuredRating = source === 'static' ? 0 : featured?.rating?.average || 0;
+  const featuredRatingCount = source === 'static' ? 0 : featured?.rating?.count || 0;
 
 
   // useEffect(() => {
@@ -95,8 +78,68 @@ const featured = recommended[0] || books[0];
       {/* Left content */}
       <div className="flex-1 min-w-0 space-y-8">
 
-        {/* Recommended */}
         <section>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+            <div>
+              <h2 className="font-display text-xl font-bold text-navy">
+                Discover
+              </h2>
+              <p className="text-sm text-gray-500 mt-1">
+                {source === 'google'
+                  ? 'Search the Google Books API for any available title.'
+                  : 'Browse the curated static modern book collection.'}
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2">
+              <button
+                onClick={() => setSource('static')}
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
+                  source === 'static'
+                    ? 'bg-primary text-white'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                BookBase Library
+              </button>
+
+              <button
+                onClick={() => setSource('google')}
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
+                  source === 'google'
+                    ? 'bg-primary text-white'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                }`}
+              >
+                Google Books
+              </button>
+            </div>
+          </div>
+
+          {source === 'google' && (
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const query = e.target.elements.q.value.trim();
+                setGoogleQuery(query);
+              }}
+              className="flex gap-2 mb-4"
+            >
+              <input
+                name="q"
+                defaultValue={googleQuery}
+                placeholder="Search Google Books..."
+                className="input flex-1"
+              />
+              <button
+                type="submit"
+                className="btn-primary px-4 py-2 text-sm"
+              >
+                Search
+              </button>
+            </form>
+          )}
+
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-display text-xl font-bold text-navy">
               Recommended
@@ -113,7 +156,7 @@ const featured = recommended[0] || books[0];
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {recommended.length > 0 ? (
               recommended.map((book) => (
-                <BookCard key={book._id} book={book} />
+                <BookCard key={book._id} book={book} showRating={source !== 'static'} />
               ))
             ) : (
               <p className="col-span-full text-gray-400 text-sm py-8 text-center">
@@ -123,45 +166,29 @@ const featured = recommended[0] || books[0];
           </div>
         </section>
 
-        {/* Categories */}
+        {/* All Books */}
         <section>
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-display text-xl font-bold text-navy">
-              Categories
+              All Books
             </h2>
 
-            <button className="text-gray-400 hover:text-primary transition-colors">
-              <HiBookOpen className="text-xl" />
+            <button
+              onClick={() => navigate('/category')}
+              className="text-primary text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all"
+            >
+              See All <HiArrowRight />
             </button>
           </div>
 
-          {/* Category buttons */}
-          <div className="flex gap-2 flex-wrap mb-4">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => loadCategory(cat === 'All' ? '' : cat)}
-                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200
-                  ${
-                    activeCat === cat || (!activeCat && cat === 'All')
-                      ? 'bg-primary text-white shadow'
-                      : 'bg-white text-gray-500 hover:text-primary border border-gray-200'
-                  }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* Books */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {categoryBooks.length > 0 ? (
-              categoryBooks.map((book) => (
-                <BookCard key={book._id} book={book} />
+            {books.length > 0 ? (
+              books.map((book) => (
+                <BookCard key={book._id} book={book} showRating={source !== 'static'} />
               ))
             ) : (
               <p className="col-span-full text-gray-400 text-sm py-8 text-center">
-                No books in this category
+                No books found
               </p>
             )}
           </div>
@@ -197,12 +224,12 @@ const featured = recommended[0] || books[0];
 
             <div className="flex items-center gap-1 mt-2">
               <StarRating
-                rating={featured.rating?.average}
+                rating={featuredRating}
                 size="sm"
               />
 
               <span className="text-yellow-400 text-sm font-semibold ml-1">
-                {featured.rating?.average || 0}
+                {featuredRating}
               </span>
             </div>
 
@@ -218,7 +245,7 @@ const featured = recommended[0] || books[0];
 
               <div>
                 <p className="font-bold text-base">
-                  {featured.rating?.count || 0}
+                  {featuredRatingCount}
                 </p>
                 <p className="text-white/50 text-xs">
                   Ratings

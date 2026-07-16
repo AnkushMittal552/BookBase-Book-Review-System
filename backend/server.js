@@ -7,7 +7,7 @@ const { errorHandler } = require('./middleware/errorMiddleware');
 // Load env vars
 dotenv.config();
 
-// Connect to MongoDB
+// Connect to MongoDB (optional for the Google Books flow)
 connectDB();
 
 const app = express();
@@ -25,6 +25,7 @@ app.use('/api/auth',    require('./routes/authRoutes'));
 app.use('/api/books',   require('./routes/bookRoutes'));
 app.use('/api/reviews', require('./routes/reviewRoutes'));
 app.use('/api/users',   require('./routes/userRoutes'));
+app.use('/api/notifications', require('./routes/notificationRoutes'));
 
 // Health check
 app.get('/api/health', (req, res) => {
@@ -34,7 +35,21 @@ app.get('/api/health', (req, res) => {
 // Error Handler (must be last)
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 BookBase server running on port ${PORT}`);
-});
+const PORT = parseInt(process.env.PORT, 10) || 5000;
+
+const startServer = (port) => {
+  const server = app.listen(port, () => {
+    console.log(`🚀 BookBase server running on port ${port}`);
+  });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.warn(`⚠️  Port ${port} is already in use. Trying port ${port + 1}...`);
+      startServer(port + 1);
+    } else {
+      throw err;
+    }
+  });
+};
+
+startServer(PORT);

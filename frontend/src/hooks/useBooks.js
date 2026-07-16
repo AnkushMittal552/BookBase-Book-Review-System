@@ -3,9 +3,10 @@ import api from '../services/api';
 
 export const useBooks = ({
   page = 1,
-  limit = 100,
+  limit = 40,
   category = '',
-  search = ''
+  search = '',
+  source = 'static'
 } = {}) => {
 
   const [books, setBooks] = useState([]);
@@ -30,9 +31,21 @@ export const useBooks = ({
         search
       }).toString();
 
-      const res = await api.get(`/books?${query}`);
+      const endpoint = source === 'google' ? `/books/google?${query}` : `/books?${query}`;
+      const res = await api.get(endpoint);
+      let fetchedBooks = res.data.books || [];
 
-      setBooks(res.data.books);
+      if (source === 'static' && typeof window !== 'undefined') {
+        try {
+          const extraBooks = JSON.parse(localStorage.getItem('staticDiscoverBooks')) || [];
+          const ids = new Set(fetchedBooks.map((book) => book._id));
+          fetchedBooks = [...fetchedBooks, ...extraBooks.filter((book) => !ids.has(book._id))];
+        } catch (storageError) {
+          console.error('Failed to load static discover additions:', storageError);
+        }
+      }
+
+      setBooks(fetchedBooks);
 
       setMeta({
         total: res.data.total,
@@ -45,11 +58,22 @@ export const useBooks = ({
     } finally {
       setLoading(false);
     }
-  }, [page, limit, category, search]);
+  }, [page, limit, category, search, source]);
 
   useEffect(() => {
     fetchBooks();
   }, [fetchBooks]);
+
+  useEffect(() => {
+    const refreshOnStaticUpdate = () => {
+      if (source === 'static') {
+        fetchBooks();
+      }
+    };
+
+    window.addEventListener('staticDiscoverChanged', refreshOnStaticUpdate);
+    return () => window.removeEventListener('staticDiscoverChanged', refreshOnStaticUpdate);
+  }, [fetchBooks, source]);
 
   return {
     books,
@@ -66,30 +90,44 @@ export const useBook = (id) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+  const fetchBook = useCallback(async () => {
 
     if (!id) return;
 
-    const fetchBook = async () => {
-      setLoading(true);
+    setLoading(true);
+    setError(null);
 
-      try {
-        const res = await api.get(`/books/${id}`);
-        setBook(res.data.book);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+    try {
 
-    fetchBook();
+      const res = await api.get(`/books/${id}`);
+
+      setBook(res.data.book);
+
+    } catch (err) {
+
+      setError(err.message);
+
+    } finally {
+
+      setLoading(false);
+
+    }
 
   }, [id]);
 
+  useEffect(() => {
+
+    fetchBook();
+
+  }, [fetchBook]);
+
   return {
+
     book,
     loading,
-    error
+    error,
+    refetch: fetchBook
+
   };
+
 };

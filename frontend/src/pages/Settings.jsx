@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import toast from 'react-hot-toast';
@@ -9,10 +9,59 @@ export default function Settings() {
   const [name, setName]       = useState(user?.name || '');
   const [avatar, setAvatar]   = useState(user?.avatar || '');
   const [saving, setSaving]   = useState(false);
+  const [favoritesCount, setFavoritesCount] = useState(0);
+  const [libraryCount, setLibraryCount] = useState(0);
+  const totalBooksCount = Math.max(0, favoritesCount) + Math.max(0, libraryCount);
 
   const [currPass, setCurrPass] = useState('');
   const [newPass, setNewPass]   = useState('');
   const [changingPw, setChangingPw] = useState(false);
+
+  const refreshCounts = () => {
+    let storedFavourites = [];
+    let storedLibrary = [];
+
+    try {
+      storedFavourites = JSON.parse(localStorage.getItem('favourites')) || [];
+    } catch {
+      storedFavourites = [];
+    }
+
+    try {
+      storedLibrary = JSON.parse(localStorage.getItem('myLibrary')) || [];
+    } catch {
+      storedLibrary = [];
+    }
+
+    const favCount = Array.isArray(storedFavourites)
+      ? storedFavourites.length
+      : 0;
+    const libCount = Array.isArray(storedLibrary)
+      ? storedLibrary.length
+      : 0;
+
+    setFavoritesCount(
+      favCount || (Array.isArray(user?.favourites) ? user.favourites.length : 0)
+    );
+    setLibraryCount(
+      libCount || (Array.isArray(user?.library) ? user.library.length : 0)
+    );
+  };
+
+  useEffect(() => {
+    refreshCounts();
+  }, [user]);
+
+  useEffect(() => {
+    const handleStorage = () => refreshCounts();
+    const handleFocus = () => refreshCounts();
+    window.addEventListener('storage', handleStorage);
+    window.addEventListener('focus', handleFocus);
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+      window.removeEventListener('focus', handleFocus);
+    };
+  }, []);
 
   const saveProfile = async (e) => {
     e.preventDefault();
@@ -44,7 +93,7 @@ export default function Settings() {
   };
 
   return (
-    <div className="max-w-2xl space-y-6">
+    <div className="w-full max-w-full space-y-6 px-4 py-6">
       <h1 className="font-display text-2xl font-bold text-navy">Settings</h1>
 
       {/* Profile card */}
@@ -107,9 +156,9 @@ export default function Settings() {
         <div className="grid grid-cols-2 gap-4 text-sm">
           {[
             { label: 'Role', value: user?.role },
-            { label: 'Favourites', value: user?.favourites?.length || 0 },
-            { label: 'Library Books', value: user?.library?.length || 0 },
-            { label: 'Downloads', value: user?.downloads?.length || 0 },
+            { label: 'Favourites', value: favoritesCount },
+            { label: 'Library Books', value: libraryCount },
+            { label: 'Total Books saved in your Account', value: totalBooksCount },
           ].map(({ label, value }) => (
             <div key={label} className="bg-surface rounded-xl p-3">
               <p className="text-xs text-gray-400">{label}</p>

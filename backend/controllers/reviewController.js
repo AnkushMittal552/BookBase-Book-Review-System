@@ -1,5 +1,4 @@
 const Review = require('../models/Review');
-const Book = require('../models/Book');
 
 // @desc    Get reviews for a book
 // @route   GET /api/reviews/book/:bookId
@@ -20,9 +19,6 @@ exports.getBookReviews = async (req, res, next) => {
 // @access  Private
 exports.addReview = async (req, res, next) => {
   try {
-    const book = await Book.findById(req.params.bookId);
-    if (!book) return res.status(404).json({ success: false, message: 'Book not found' });
-
     const existing = await Review.findOne({ book: req.params.bookId, user: req.user._id });
     if (existing) {
       return res.status(400).json({ success: false, message: 'You already reviewed this book' });
@@ -36,6 +32,7 @@ exports.addReview = async (req, res, next) => {
       comment: req.body.comment
     });
 
+    await Review.calcAverageRating(req.params.bookId);
     await review.populate('user', 'name avatar');
     res.status(201).json({ success: true, review });
   } catch (error) {

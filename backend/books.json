@@ -13,14 +13,15 @@
     "publishedYear": 2018,
     "language": "English",
     "rating": {
-      "average": 4.3,
-      "count": 5000
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "self-help",
       "bestseller"
     ],
-    "isRecommended": true
+    "isRecommended": true,
+    "readUrl": "https://books.google.com/books?q=Atomic%20Habits%20James%20Clear"
   },
   {
     "title": "The Alchemist",
@@ -36,14 +37,15 @@
     "publishedYear": 1988,
     "language": "English",
     "rating": {
-      "average": 4.4,
-      "count": 5731
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "fiction",
       "bestseller"
     ],
-    "isRecommended": true
+    "isRecommended": true,
+    "readUrl": "https://books.google.com/books?q=The%20Alchemist%20Paulo%20Coelho"
   },
   {
     "title": "Clean Code",
@@ -59,14 +61,15 @@
     "publishedYear": 2008,
     "language": "English",
     "rating": {
-      "average": 4.5,
-      "count": 6462
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "technology",
       "bestseller"
     ],
-    "isRecommended": true
+    "isRecommended": true,
+    "readUrl": "https://books.google.com/books?q=Clean%20Code%20Robert%20C.%20Martin"
   },
   {
     "title": "Deep Work",
@@ -82,14 +85,15 @@
     "publishedYear": 2016,
     "language": "English",
     "rating": {
-      "average": 4.6,
-      "count": 7193
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "business",
       "bestseller"
     ],
-    "isRecommended": true
+    "isRecommended": true,
+    "readUrl": "https://books.google.com/books?q=Deep%20Work%20Cal%20Newport"
   },
   {
     "title": "The Pragmatic Programmer",
@@ -105,14 +109,15 @@
     "publishedYear": 1999,
     "language": "English",
     "rating": {
-      "average": 4.7,
-      "count": 7924
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "technology",
       "bestseller"
     ],
-    "isRecommended": true
+    "isRecommended": true,
+    "readUrl": "https://books.google.com/books?q=The%20Pragmatic%20Programmer%20Andrew%20Hunt%20%26%20David%20Thomas"
   },
   {
     "title": "Rich Dad Poor Dad",
@@ -128,14 +133,15 @@
     "publishedYear": 1997,
     "language": "English",
     "rating": {
-      "average": 4.8,
-      "count": 8655
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "business",
       "bestseller"
     ],
-    "isRecommended": true
+    "isRecommended": true,
+    "readUrl": "https://books.google.com/books?q=Rich%20Dad%20Poor%20Dad%20Robert%20T.%20Kiyosaki"
   },
   {
     "title": "The Psychology of Money",
@@ -151,20 +157,21 @@
     "publishedYear": 2020,
     "language": "English",
     "rating": {
-      "average": 4.9,
-      "count": 9386
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "business",
       "bestseller"
     ],
-    "isRecommended": true
+    "isRecommended": true,
+    "readUrl": "https://books.google.com/books?q=The%20Psychology%20of%20Money%20Morgan%20Housel"
   },
   {
     "title": "Think and Grow Rich",
     "author": "Napoleon Hill",
     "description": "Think and Grow Rich by Napoleon Hill.",
-    "coverImage": "/books/think-and-grow-rich.webp",
+    "coverImage": "/books/Think and Grow Rich.jpg",
     "categories": [
       "Business"
     ],
@@ -174,20 +181,21 @@
     "publishedYear": 1937,
     "language": "English",
     "rating": {
-      "average": 4.3,
-      "count": 10117
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "business",
       "bestseller"
     ],
-    "isRecommended": true
+    "isRecommended": true,
+    "readUrl": "https://books.google.com/books?q=Think%20and%20Grow%20Rich%20Napoleon%20Hill"
   },
   {
     "title": "The 7 Habits of Highly Effective People",
     "author": "Stephen R. Covey",
     "description": "The 7 Habits of Highly Effective People by Stephen R. Covey.",
-    "coverImage": "/books/7-habits.webp",
+    "coverImage": "/books/7habits.jpeg",
     "categories": [
       "Self-Help"
     ],
@@ -197,20 +205,21 @@
     "publishedYear": 1989,
     "language": "English",
     "rating": {
-      "average": 4.4,
-      "count": 10848
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "self-help",
       "bestseller"
     ],
-    "isRecommended": true
+    "isRecommended": true,
+    "readUrl": "https://books.google.com/books?q=The%207%20Habits%20of%20Highly%20Effective%20People%20Stephen%20R.%20Covey"
   },
   {
     "title": "How to Win Friends and Influence People",
     "author": "Dale Carnegie",
     "description": "How to Win Friends and Influence People by Dale Carnegie.",
-    "coverImage": "/books/how-to-win-friends.webp",
+    "coverImage": "/books/how-to-win-friends.jpeg",
     "categories": [
       "Self-Help"
     ],
@@ -220,20 +229,21 @@
     "publishedYear": 1936,
     "language": "English",
     "rating": {
-      "average": 4.5,
-      "count": 11579
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "self-help",
       "bestseller"
     ],
-    "isRecommended": true
+    "isRecommended": true,
+    "readUrl": "https://books.google.com/books?q=How%20to%20Win%20Friends%20and%20Influence%20People%20Dale%20Carnegie"
   },
   {
     "title": "Sapiens",
     "author": "Yuval Noah Harari",
     "description": "Sapiens by Yuval Noah Harari.",
-    "coverImage": "/books/sapiens.webp",
+    "coverImage": "/books/sapiens.jpeg",
     "categories": [
       "History"
     ],
@@ -243,14 +253,15 @@
     "publishedYear": 2011,
     "language": "English",
     "rating": {
-      "average": 4.6,
-      "count": 12310
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "history",
       "bestseller"
     ],
-    "isRecommended": true
+    "isRecommended": true,
+    "readUrl": "https://books.google.com/books?q=Sapiens%20Yuval%20Noah%20Harari"
   },
   {
     "title": "Homo Deus",
@@ -266,14 +277,15 @@
     "publishedYear": 2015,
     "language": "English",
     "rating": {
-      "average": 4.7,
-      "count": 13041
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "science",
       "bestseller"
     ],
-    "isRecommended": true
+    "isRecommended": true,
+    "readUrl": "https://books.google.com/books?q=Homo%20Deus%20Yuval%20Noah%20Harari"
   },
   {
     "title": "21 Lessons for the 21st Century",
@@ -289,14 +301,15 @@
     "publishedYear": 2018,
     "language": "English",
     "rating": {
-      "average": 4.8,
-      "count": 13772
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "science",
       "bestseller"
     ],
-    "isRecommended": true
+    "isRecommended": true,
+    "readUrl": "https://books.google.com/books?q=21%20Lessons%20for%20the%2021st%20Century%20Yuval%20Noah%20Harari"
   },
   {
     "title": "The Hobbit",
@@ -312,14 +325,15 @@
     "publishedYear": 1937,
     "language": "English",
     "rating": {
-      "average": 4.9,
-      "count": 14503
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "fantasy",
       "bestseller"
     ],
-    "isRecommended": true
+    "isRecommended": true,
+    "readUrl": "https://books.google.com/books?q=The%20Hobbit%20J.R.R.%20Tolkien"
   },
   {
     "title": "The Lord of the Rings",
@@ -335,20 +349,21 @@
     "publishedYear": 1954,
     "language": "English",
     "rating": {
-      "average": 4.3,
-      "count": 15234
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "fantasy",
       "bestseller"
     ],
-    "isRecommended": true
+    "isRecommended": true,
+    "readUrl": "https://books.google.com/books?q=The%20Lord%20of%20the%20Rings%20J.R.R.%20Tolkien"
   },
   {
     "title": "Harry Potter and the Sorcerer's Stone",
     "author": "J.K. Rowling",
     "description": "Harry Potter and the Sorcerer's Stone by J.K. Rowling.",
-    "coverImage": "/books/hp1.webp",
+    "coverImage": "/books/hp1.jpeg",
     "categories": [
       "Fantasy"
     ],
@@ -358,20 +373,21 @@
     "publishedYear": 1997,
     "language": "English",
     "rating": {
-      "average": 4.4,
-      "count": 15965
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "fantasy",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Harry%20Potter%20and%20the%20Sorcerer's%20Stone%20J.K.%20Rowling"
   },
   {
     "title": "Harry Potter and the Chamber of Secrets",
     "author": "J.K. Rowling",
     "description": "Harry Potter and the Chamber of Secrets by J.K. Rowling.",
-    "coverImage": "/books/hp2.webp",
+    "coverImage": "/books/hp2.jpeg",
     "categories": [
       "Fantasy"
     ],
@@ -381,20 +397,21 @@
     "publishedYear": 1998,
     "language": "English",
     "rating": {
-      "average": 4.5,
-      "count": 16696
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "fantasy",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Harry%20Potter%20and%20the%20Chamber%20of%20Secrets%20J.K.%20Rowling"
   },
   {
     "title": "Harry Potter and the Prisoner of Azkaban",
     "author": "J.K. Rowling",
     "description": "Harry Potter and the Prisoner of Azkaban by J.K. Rowling.",
-    "coverImage": "/books/hp3.webp",
+    "coverImage": "/books/hp3.jpeg",
     "categories": [
       "Fantasy"
     ],
@@ -404,20 +421,21 @@
     "publishedYear": 1999,
     "language": "English",
     "rating": {
-      "average": 4.6,
-      "count": 17427
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "fantasy",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Harry%20Potter%20and%20the%20Prisoner%20of%20Azkaban%20J.K.%20Rowling"
   },
   {
     "title": "Harry Potter and the Goblet of Fire",
     "author": "J.K. Rowling",
     "description": "Harry Potter and the Goblet of Fire by J.K. Rowling.",
-    "coverImage": "/books/hp4.webp",
+    "coverImage": "/books/hp4.jpg",
     "categories": [
       "Fantasy"
     ],
@@ -427,20 +445,21 @@
     "publishedYear": 2000,
     "language": "English",
     "rating": {
-      "average": 4.7,
-      "count": 18158
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "fantasy",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Harry%20Potter%20and%20the%20Goblet%20of%20Fire%20J.K.%20Rowling"
   },
   {
     "title": "Harry Potter and the Order of the Phoenix",
     "author": "J.K. Rowling",
     "description": "Harry Potter and the Order of the Phoenix by J.K. Rowling.",
-    "coverImage": "/books/hp5.webp",
+    "coverImage": "/books/hp5.jpg",
     "categories": [
       "Fantasy"
     ],
@@ -450,20 +469,21 @@
     "publishedYear": 2003,
     "language": "English",
     "rating": {
-      "average": 4.8,
-      "count": 18889
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "fantasy",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Harry%20Potter%20and%20the%20Order%20of%20the%20Phoenix%20J.K.%20Rowling"
   },
   {
     "title": "Harry Potter and the Half-Blood Prince",
     "author": "J.K. Rowling",
     "description": "Harry Potter and the Half-Blood Prince by J.K. Rowling.",
-    "coverImage": "/books/hp6.webp",
+    "coverImage": "/books/hp6.jpeg",
     "categories": [
       "Fantasy"
     ],
@@ -473,20 +493,21 @@
     "publishedYear": 2005,
     "language": "English",
     "rating": {
-      "average": 4.9,
-      "count": 19620
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "fantasy",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Harry%20Potter%20and%20the%20Half-Blood%20Prince%20J.K.%20Rowling"
   },
   {
     "title": "Harry Potter and the Deathly Hallows",
     "author": "J.K. Rowling",
     "description": "Harry Potter and the Deathly Hallows by J.K. Rowling.",
-    "coverImage": "/books/hp7.webp",
+    "coverImage": "/books/hp7.jpeg",
     "categories": [
       "Fantasy"
     ],
@@ -496,20 +517,21 @@
     "publishedYear": 2007,
     "language": "English",
     "rating": {
-      "average": 4.3,
-      "count": 20351
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "fantasy",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Harry%20Potter%20and%20the%20Deathly%20Hallows%20J.K.%20Rowling"
   },
   {
     "title": "The Da Vinci Code",
     "author": "Dan Brown",
     "description": "The Da Vinci Code by Dan Brown.",
-    "coverImage": "/books/da-vinci-code.webp",
+    "coverImage": "/books/da-vinci-code.jpg",
     "categories": [
       "Mystery"
     ],
@@ -519,20 +541,21 @@
     "publishedYear": 2003,
     "language": "English",
     "rating": {
-      "average": 4.4,
-      "count": 21082
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "mystery",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=The%20Da%20Vinci%20Code%20Dan%20Brown"
   },
   {
     "title": "Angels & Demons",
     "author": "Dan Brown",
     "description": "Angels & Demons by Dan Brown.",
-    "coverImage": "/books/angels-demons.webp",
+    "coverImage": "/books/angels-demons.jpeg",
     "categories": [
       "Mystery"
     ],
@@ -542,20 +565,21 @@
     "publishedYear": 2000,
     "language": "English",
     "rating": {
-      "average": 4.5,
-      "count": 21813
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "mystery",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Angels%20%26%20Demons%20Dan%20Brown"
   },
   {
     "title": "Inferno",
     "author": "Dan Brown",
     "description": "Inferno by Dan Brown.",
-    "coverImage": "/books/inferno.webp",
+    "coverImage": "/books/inferno.jpeg",
     "categories": [
       "Mystery"
     ],
@@ -565,20 +589,21 @@
     "publishedYear": 2013,
     "language": "English",
     "rating": {
-      "average": 4.6,
-      "count": 22544
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "mystery",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Inferno%20Dan%20Brown"
   },
   {
     "title": "The Girl with the Dragon Tattoo",
     "author": "Stieg Larsson",
     "description": "The Girl with the Dragon Tattoo by Stieg Larsson.",
-    "coverImage": "/books/dragon-tattoo.webp",
+    "coverImage": "/books/dragon-tattoo.jpeg",
     "categories": [
       "Mystery"
     ],
@@ -588,20 +613,21 @@
     "publishedYear": 2005,
     "language": "English",
     "rating": {
-      "average": 4.7,
-      "count": 23275
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "mystery",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=The%20Girl%20with%20the%20Dragon%20Tattoo%20Stieg%20Larsson"
   },
   {
     "title": "To Kill a Mockingbird",
     "author": "Harper Lee",
     "description": "To Kill a Mockingbird by Harper Lee.",
-    "coverImage": "/books/to-kill-a-mockingbird.webp",
+    "coverImage": "/books/to-kill-a-mockingbird.jpeg",
     "categories": [
       "Fiction"
     ],
@@ -611,20 +637,21 @@
     "publishedYear": 1960,
     "language": "English",
     "rating": {
-      "average": 4.8,
-      "count": 24006
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "fiction",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=To%20Kill%20a%20Mockingbird%20Harper%20Lee"
   },
   {
     "title": "1984",
     "author": "George Orwell",
     "description": "1984 by George Orwell.",
-    "coverImage": "/books/1984.webp",
+    "coverImage": "/books/1984.jpeg",
     "categories": [
       "Fiction"
     ],
@@ -634,20 +661,21 @@
     "publishedYear": 1949,
     "language": "English",
     "rating": {
-      "average": 4.9,
-      "count": 24737
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "fiction",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=1984%20George%20Orwell"
   },
   {
     "title": "Animal Farm",
     "author": "George Orwell",
     "description": "Animal Farm by George Orwell.",
-    "coverImage": "/books/animal-farm.webp",
+    "coverImage": "/books/animal-farm.jpeg",
     "categories": [
       "Fiction"
     ],
@@ -657,20 +685,21 @@
     "publishedYear": 1945,
     "language": "English",
     "rating": {
-      "average": 4.3,
-      "count": 25468
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "fiction",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Animal%20Farm%20George%20Orwell"
   },
   {
     "title": "Pride and Prejudice",
     "author": "Jane Austen",
     "description": "Pride and Prejudice by Jane Austen.",
-    "coverImage": "/books/pride-prejudice.webp",
+    "coverImage": "/books/pride-prejudice.jpeg",
     "categories": [
       "Romance"
     ],
@@ -680,20 +709,21 @@
     "publishedYear": 1813,
     "language": "English",
     "rating": {
-      "average": 4.4,
-      "count": 26199
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "romance",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Pride%20and%20Prejudice%20Jane%20Austen"
   },
   {
     "title": "The Great Gatsby",
     "author": "F. Scott Fitzgerald",
     "description": "The Great Gatsby by F. Scott Fitzgerald.",
-    "coverImage": "/books/great-gatsby.webp",
+    "coverImage": "/books/great-gatsby.jpg",
     "categories": [
       "Fiction"
     ],
@@ -703,14 +733,15 @@
     "publishedYear": 1925,
     "language": "English",
     "rating": {
-      "average": 4.5,
-      "count": 26930
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "fiction",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=The%20Great%20Gatsby%20F.%20Scott%20Fitzgerald"
   },
   {
     "title": "The Catcher in the Rye",
@@ -726,14 +757,15 @@
     "publishedYear": 1951,
     "language": "English",
     "rating": {
-      "average": 4.6,
-      "count": 27661
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "fiction",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=The%20Catcher%20in%20the%20Rye%20J.D.%20Salinger"
   },
   {
     "title": "The Kite Runner",
@@ -749,14 +781,15 @@
     "publishedYear": 2003,
     "language": "English",
     "rating": {
-      "average": 4.7,
-      "count": 28392
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "drama",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=The%20Kite%20Runner%20Khaled%20Hosseini"
   },
   {
     "title": "A Thousand Splendid Suns",
@@ -772,20 +805,21 @@
     "publishedYear": 2007,
     "language": "English",
     "rating": {
-      "average": 4.8,
-      "count": 29123
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "drama",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=A%20Thousand%20Splendid%20Suns%20Khaled%20Hosseini"
   },
   {
     "title": "The Book Thief",
     "author": "Markus Zusak",
     "description": "The Book Thief by Markus Zusak.",
-    "coverImage": "/books/book-thief.webp",
+    "coverImage": "/books/book-thief.jpeg",
     "categories": [
       "Drama"
     ],
@@ -795,20 +829,21 @@
     "publishedYear": 2005,
     "language": "English",
     "rating": {
-      "average": 4.9,
-      "count": 29854
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "drama",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=The%20Book%20Thief%20Markus%20Zusak"
   },
   {
     "title": "The Fault in Our Stars",
     "author": "John Green",
     "description": "The Fault in Our Stars by John Green.",
-    "coverImage": "/books/fault-stars.webp",
+    "coverImage": "/books/fault-stars.jpg",
     "categories": [
       "Romance"
     ],
@@ -818,20 +853,21 @@
     "publishedYear": 2012,
     "language": "English",
     "rating": {
-      "average": 4.3,
-      "count": 30585
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "romance",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=The%20Fault%20in%20Our%20Stars%20John%20Green"
   },
   {
     "title": "Gone Girl",
     "author": "Gillian Flynn",
     "description": "Gone Girl by Gillian Flynn.",
-    "coverImage": "/books/gone-girl.webp",
+    "coverImage": "/books/gone-girl.jpg",
     "categories": [
       "Mystery"
     ],
@@ -841,20 +877,21 @@
     "publishedYear": 2012,
     "language": "English",
     "rating": {
-      "average": 4.4,
-      "count": 31316
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "mystery",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Gone%20Girl%20Gillian%20Flynn"
   },
   {
     "title": "Dune",
     "author": "Frank Herbert",
     "description": "Dune by Frank Herbert.",
-    "coverImage": "/books/dune.webp",
+    "coverImage": "/books/dune.jpg",
     "categories": [
       "Sci-Fi"
     ],
@@ -864,20 +901,21 @@
     "publishedYear": 1965,
     "language": "English",
     "rating": {
-      "average": 4.5,
-      "count": 32047
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "sci-fi",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Dune%20Frank%20Herbert"
   },
   {
     "title": "Foundation",
     "author": "Isaac Asimov",
     "description": "Foundation by Isaac Asimov.",
-    "coverImage": "/books/foundation.webp",
+    "coverImage": "/books/foundation.jpeg",
     "categories": [
       "Sci-Fi"
     ],
@@ -887,20 +925,21 @@
     "publishedYear": 1951,
     "language": "English",
     "rating": {
-      "average": 4.6,
-      "count": 32778
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "sci-fi",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Foundation%20Isaac%20Asimov"
   },
   {
     "title": "The Martian",
     "author": "Andy Weir",
     "description": "The Martian by Andy Weir.",
-    "coverImage": "/books/martian.webp",
+    "coverImage": "/books/martian.jpg",
     "categories": [
       "Sci-Fi"
     ],
@@ -910,20 +949,21 @@
     "publishedYear": 2011,
     "language": "English",
     "rating": {
-      "average": 4.7,
-      "count": 33509
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "sci-fi",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=The%20Martian%20Andy%20Weir"
   },
   {
     "title": "Project Hail Mary",
     "author": "Andy Weir",
     "description": "Project Hail Mary by Andy Weir.",
-    "coverImage": "/books/project-hail-mary.webp",
+    "coverImage": "/books/project-hail-mary.jpeg",
     "categories": [
       "Sci-Fi"
     ],
@@ -933,20 +973,21 @@
     "publishedYear": 2021,
     "language": "English",
     "rating": {
-      "average": 4.8,
-      "count": 34240
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "sci-fi",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Project%20Hail%20Mary%20Andy%20Weir"
   },
   {
     "title": "The Silent Patient",
     "author": "Alex Michaelides",
     "description": "The Silent Patient by Alex Michaelides.",
-    "coverImage": "/books/silent-patient.webp",
+    "coverImage": "/books/silent-patient.jpeg",
     "categories": [
       "Mystery"
     ],
@@ -956,20 +997,21 @@
     "publishedYear": 2019,
     "language": "English",
     "rating": {
-      "average": 4.9,
-      "count": 34971
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "mystery",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=The%20Silent%20Patient%20Alex%20Michaelides"
   },
   {
     "title": "Educated",
     "author": "Tara Westover",
     "description": "Educated by Tara Westover.",
-    "coverImage": "/books/educated.webp",
+    "coverImage": "/books/educated.jpeg",
     "categories": [
       "Biography"
     ],
@@ -979,20 +1021,21 @@
     "publishedYear": 2018,
     "language": "English",
     "rating": {
-      "average": 4.3,
-      "count": 35702
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "biography",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Educated%20Tara%20Westover"
   },
   {
     "title": "Becoming",
     "author": "Michelle Obama",
     "description": "Becoming by Michelle Obama.",
-    "coverImage": "/books/becoming.webp",
+    "coverImage": "/books/becoming.jpg",
     "categories": [
       "Biography"
     ],
@@ -1002,20 +1045,21 @@
     "publishedYear": 2018,
     "language": "English",
     "rating": {
-      "average": 4.4,
-      "count": 36433
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "biography",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Becoming%20Michelle%20Obama"
   },
   {
     "title": "Steve Jobs",
     "author": "Walter Isaacson",
     "description": "Steve Jobs by Walter Isaacson.",
-    "coverImage": "/books/steve-jobs.webp",
+    "coverImage": "/books/steve-jobs.jpg",
     "categories": [
       "Biography"
     ],
@@ -1025,20 +1069,21 @@
     "publishedYear": 2011,
     "language": "English",
     "rating": {
-      "average": 4.5,
-      "count": 37164
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "biography",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Steve%20Jobs%20Walter%20Isaacson"
   },
   {
     "title": "Zero to One",
     "author": "Peter Thiel",
     "description": "Zero to One by Peter Thiel.",
-    "coverImage": "/books/zero-to-one.webp",
+    "coverImage": "/books/zero-to-one.jpeg",
     "categories": [
       "Business"
     ],
@@ -1048,20 +1093,21 @@
     "publishedYear": 2014,
     "language": "English",
     "rating": {
-      "average": 4.6,
-      "count": 37895
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "business",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Zero%20to%20One%20Peter%20Thiel"
   },
   {
     "title": "The Lean Startup",
     "author": "Eric Ries",
     "description": "The Lean Startup by Eric Ries.",
-    "coverImage": "/books/lean-startup.webp",
+    "coverImage": "/books/lean-startup.jpeg",
     "categories": [
       "Business"
     ],
@@ -1071,20 +1117,21 @@
     "publishedYear": 2011,
     "language": "English",
     "rating": {
-      "average": 4.7,
-      "count": 38626
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "business",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=The%20Lean%20Startup%20Eric%20Ries"
   },
   {
     "title": "Cracking the Coding Interview",
     "author": "Gayle Laakmann McDowell",
     "description": "Cracking the Coding Interview by Gayle Laakmann McDowell.",
-    "coverImage": "/books/ctci.webp",
+    "coverImage": "/books/ctci.jpeg",
     "categories": [
       "Education"
     ],
@@ -1094,20 +1141,21 @@
     "publishedYear": 2015,
     "language": "English",
     "rating": {
-      "average": 4.8,
-      "count": 39357
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "education",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Cracking%20the%20Coding%20Interview%20Gayle%20Laakmann%20McDowell"
   },
   {
     "title": "Introduction to Algorithms",
     "author": "Thomas H. Cormen",
     "description": "Introduction to Algorithms by Thomas H. Cormen.",
-    "coverImage": "/books/clrs.webp",
+    "coverImage": "/books/clrs.jpeg",
     "categories": [
       "Education"
     ],
@@ -1117,20 +1165,21 @@
     "publishedYear": 2009,
     "language": "English",
     "rating": {
-      "average": 4.9,
-      "count": 40088
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "education",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Introduction%20to%20Algorithms%20Thomas%20H.%20Cormen"
   },
   {
     "title": "Design Patterns",
     "author": "Erich Gamma et al.",
     "description": "Design Patterns by Erich Gamma et al..",
-    "coverImage": "/books/design-patterns.webp",
+    "coverImage": "/books/design-patterns.jpeg",
     "categories": [
       "Technology"
     ],
@@ -1140,13 +1189,14 @@
     "publishedYear": 1994,
     "language": "English",
     "rating": {
-      "average": 4.3,
-      "count": 40819
+      "average": 0,
+      "count": 0
     },
     "tags": [
       "technology",
       "bestseller"
     ],
-    "isRecommended": false
+    "isRecommended": false,
+    "readUrl": "https://books.google.com/books?q=Design%20Patterns%20Erich%20Gamma%20et%20al."
   }
 ]

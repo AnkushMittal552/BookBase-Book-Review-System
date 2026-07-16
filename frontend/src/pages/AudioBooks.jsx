@@ -5,9 +5,13 @@ import {
   HiPlay
 } from 'react-icons/hi';
 
-import api from '../services/api';
 import { audioBooks } from '../services/audioBooks';
+import { searchAudiobook } from '../services/youtube';
 import StarRating from '../components/StarRating';
+
+const AUDIOBOOK_CACHE_KEY = 'youtube-audiobooks-v2';
+const CACHE_DURATION_MS = 6 * 60 * 60 * 1000;
+const MAX_BOOKS_PER_LOOKUP = 10;
 
 export default function AudioBooks() {
 
@@ -15,56 +19,73 @@ export default function AudioBooks() {
 
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [lookupError, setLookupError] = useState('');
 
   useEffect(() => {
-
-    api.get('/books?isAudio=true&limit=20')
-
-      .then(res => {
-
-        if (
-          res.data.books &&
-          res.data.books.length > 0
-        ) {
-
-          setBooks(res.data.books);
-
-        } else {
-
-          setBooks(audioBooks);
-
-        }
-
-      })
-
-      .catch(() => {
-
-        setBooks(audioBooks);
-
-      })
-
-      .finally(() => {
-
+    const load = async () => {
+      const cached = JSON.parse(localStorage.getItem(AUDIOBOOK_CACHE_KEY) || 'null');
+      if (cached?.savedAt && Date.now() - cached.savedAt < CACHE_DURATION_MS) {
+        setBooks(cached.books?.length ? cached.books : audioBooks);
         setLoading(false);
+        return;
+      }
 
-      });
+      // The general books endpoint does not provide an audiobook filter. Using
+      // it here returned regular (and sometimes fictional) books, so none of
+      // the YouTube lookups matched and the audiobook page appeared empty.
+      // Show the curated audiobook catalogue immediately, then enrich it with
+      // YouTube video IDs where the lookup is available.
+      setBooks(audioBooks);
+      setLoading(false);
+      await loadYouTubeBooks(audioBooks);
+    };
 
+    const loadYouTubeBooks = async (candidateBooks) => {
+      let failedStatus;
+      // Searching YouTube is quota-limited. The service caches each result, and
+      // this cap avoids consuming the full daily quota on one first-time visit.
+      const results = [];
+      for (const book of candidateBooks.slice(0, MAX_BOOKS_PER_LOOKUP)) {
+        try {
+          const videoId = await searchAudiobook(book.title, book.author);
+          if (videoId) results.push({ ...book, videoId });
+        } catch (error) {
+          failedStatus = error.status || failedStatus;
+          // Do not continue issuing requests once YouTube reports exhausted quota.
+          if (error.status === 429) break;
+        }
+      }
+
+      const videoIds = new Map(results.map((book) => [book._id, book.videoId]));
+      const enrichedBooks = candidateBooks.map((book) => (
+        videoIds.has(book._id) ? { ...book, videoId: videoIds.get(book._id) } : book
+      ));
+      setBooks(enrichedBooks);
+
+      localStorage.setItem(AUDIOBOOK_CACHE_KEY, JSON.stringify({
+        savedAt: Date.now(),
+        books: enrichedBooks
+      }));
+
+      if (failedStatus === 429) {
+        setLookupError('YouTube API quota has been reached. Please try again after the quota resets.');
+      } else if (failedStatus) {
+        setLookupError('YouTube availability could not be checked. Select a book to try playing it.');
+      }
+    };
+
+    load();
   }, []);
 
-  if (loading)
-
+  if (loading) {
     return (
-
       <div className="flex justify-center py-16">
-
         <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-
       </div>
-
     );
+  }
 
   return (
-
     <div className="space-y-6">
 
       <div className="flex items-center gap-3">
@@ -96,7 +117,7 @@ export default function AudioBooks() {
           <HiMicrophone className="text-6xl mb-3" />
 
           <p className="text-lg font-medium">
-            No audio books yet
+            {lookupError || 'No audio books found on YouTube'}
           </p>
 
         </div>
@@ -111,7 +132,9 @@ export default function AudioBooks() {
               key={book._id}
               className="card p-4 flex gap-4 cursor-pointer group hover:shadow-hover transition-all"
               onClick={() =>
-                navigate(`/audio/${book._id}`)
+                navigate(
+                  `/audio/${book._id}${book.videoId ? `?video=${encodeURIComponent(book.videoId)}` : ''}`
+                )
               }
             >
 
