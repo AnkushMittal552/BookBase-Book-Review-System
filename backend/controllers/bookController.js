@@ -1,6 +1,7 @@
 const Book = require('../models/Book');
 const Review = require('../models/Review');
 const axios = require('axios');
+const mongoose = require('mongoose');
 const {
   fetchGoogleBooks,
   fetchGoogleBookById
@@ -168,7 +169,12 @@ exports.searchAudioBookVideo = async (req, res, next) => {
 exports.getBook = async (req, res, next) => {
   try {
 
-    let book = await Book.findById(req.params.id);
+    // Google Books volume IDs are not MongoDB ObjectIds. Calling findById with
+    // one (for example, "uFA5EQAQBAJ") throws a CastError before the Google
+    // Books fallback below can run.
+    let book = mongoose.isValidObjectId(req.params.id)
+      ? await Book.findById(req.params.id)
+      : null;
 
     // If not found in MongoDB, check Google Books
     if (!book) {
